@@ -1,0 +1,1931 @@
+<title>מהעיזבון – לעשייה</title>
+<script>document.documentElement.lang = "he"; document.documentElement.dir = "rtl";
+  // בתוך מסגרת ה-Artifact עדכון הכתובת עלול להיחסם — לא לתת לזה לשבור את הסינון
+  (() => { const r = history.replaceState.bind(history); history.replaceState = (...a) => { try { r(...a); } catch (e) {} }; })();</script>
+<style>
+  .demo-banner { background: #f1e7d3; color: #1f2430; border-bottom: 1px solid #e2cfa6; text-align: center; font-size: .92rem;
+    padding-block: 8px; padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+  .site-header { top: env(safe-area-inset-top, 0px); }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #f7f4ee;
+  --paper: #fffdf9;
+  --ink: #1f2430;
+  --ink-soft: #5a5f6b;
+  --line: #e4ded2;
+  --navy: #1e2a3d;
+  --gold: #a8823c;
+  --gold-soft: #f1e7d3;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(30, 42, 61, .06), 0 6px 20px rgba(30, 42, 61, .06);
+  --serif: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --sans: "Assistant", "Segoe UI", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.7 var(--sans);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.25; margin: 0 0 .5em; }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0 0 1em; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 20px; }
+.skip { position: absolute; right: -999px; }
+.skip:focus { right: 12px; top: 12px; background: #fff; padding: 8px 14px; z-index: 99; }
+main:focus { outline: none; }
+
+/* ---------- government logos bar ---------- */
+.gov-bar { background: #fff; border-bottom: 1px solid var(--line); }
+.gov-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 10px; }
+.gov-bar img { width: auto; display: block; }
+.logo-moj { height: 72px; }
+.logo-ica { height: 50px; }
+@media (max-width: 600px) {
+  .logo-moj { height: 52px; }
+  .logo-ica { height: 34px; }
+}
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(255, 253, 249, .94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner { display: flex; align-items: center; gap: 24px; min-height: 68px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-inline-end: auto; }
+.brand-mark {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--navy); color: var(--gold-soft);
+}
+.brand strong { display: block; font-family: var(--serif); font-size: 1.15rem; }
+.brand small { display: block; color: var(--ink-soft); font-size: .8rem; line-height: 1.2; }
+.nav { display: flex; gap: 4px; }
+.nav a {
+  text-decoration: none; padding: 8px 12px; white-space: nowrap; border-radius: 999px;
+  color: var(--ink-soft); font-weight: 600;
+}
+.nav a:hover { color: var(--ink); background: var(--gold-soft); }
+.nav a.active { color: var(--navy); background: var(--gold-soft); }
+.menu-btn { display: none; background: none; border: 1px solid var(--line); border-radius: 10px; font-size: 1.2rem; padding: 4px 12px; cursor: pointer; }
+
+@media (max-width: 1020px) {
+  .menu-btn { display: block; }
+  .nav {
+    display: none; position: absolute; top: 68px; inset-inline: 0;
+    flex-direction: column; background: var(--paper);
+    border-bottom: 1px solid var(--line); padding: 8px 20px 16px;
+  }
+  .nav.open { display: flex; }
+}
+
+/* ---------- hero ---------- */
+.hero {
+  background:
+    radial-gradient(ellipse at 80% 0%, rgba(168, 130, 60, .22), transparent 55%),
+    linear-gradient(160deg, #1e2a3d 0%, #263650 100%);
+  color: #f6f1e6;
+  padding: 88px 0 72px;
+  text-align: center;
+}
+.hero .eyebrow { color: #d9bf8a; letter-spacing: .08em; font-weight: 600; }
+.hero h1 { margin: 10px auto 18px; max-width: 16ch; }
+.hero p.lead { max-width: 680px; margin: 0 auto 30px; font-size: 1.15rem; color: #d8dce4; }
+.hero-search {
+  display: flex; gap: 8px; max-width: 620px; margin: 0 auto 18px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px; padding: 6px;
+}
+.hero-search input {
+  flex: 1; min-width: 0; border: 0; background: transparent; color: #fff;
+  font: inherit; font-size: 1.05rem; padding: 8px 16px;
+}
+.hero-search input::placeholder { color: #c3cad6; }
+.hero-search input:focus { outline: none; }
+.hero-search:focus-within { border-color: #d9bf8a; }
+.search-big input {
+  width: 100%; font: inherit; font-size: 1.2rem; padding: 14px 20px; margin: 16px 0 32px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--paper);
+}
+.search-big input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 999px; font-weight: 700;
+  text-decoration: none; border: 1px solid transparent; cursor: pointer; font: inherit; font-weight: 700;
+}
+.btn-gold { background: var(--gold); color: #fff; }
+.btn-gold:hover { background: #8f6d2f; }
+.btn-ghost { border-color: rgba(255,255,255,.35); color: #fff; }
+.btn-ghost:hover { background: rgba(255,255,255,.08); }
+.btn-line { border-color: var(--line); background: var(--paper); color: var(--ink); }
+.btn-line:hover { border-color: var(--gold); }
+
+/* ---------- stats ---------- */
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+  margin-top: -40px; position: relative; box-shadow: var(--shadow);
+}
+.stat { background: var(--paper); padding: 22px 16px; text-align: center; }
+.stat b { display: block; font-family: var(--serif); font-size: 2.1rem; color: var(--navy); line-height: 1.1; }
+.stat span { color: var(--ink-soft); font-size: .95rem; }
+
+/* ---------- sections ---------- */
+section.block { padding: 64px 0; }
+section.block.alt { background: var(--paper); border-block: 1px solid var(--line); }
+.section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.section-head p { color: var(--ink-soft); margin: 0; max-width: 640px; }
+.more { color: var(--gold); font-weight: 700; text-decoration: none; white-space: nowrap; }
+.more:hover { text-decoration: underline; }
+
+/* ---------- process ---------- */
+.process { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; counter-reset: step; }
+.step {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 22px; position: relative;
+}
+section.alt .step { background: var(--bg); }
+.step::before {
+  counter-increment: step; content: counter(step);
+  display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--navy); color: var(--gold-soft); font-weight: 700; margin-bottom: 12px;
+}
+.step h3 { margin-bottom: 6px; }
+.step p { color: var(--ink-soft); margin: 0; font-size: .97rem; }
+
+/* ---------- people ---------- */
+.people-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }
+.person-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px 20px; text-align: center; text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.person-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.person-card h3 { margin: 14px 0 2px; }
+.person-card .meta { color: var(--ink-soft); font-size: .92rem; }
+.person-card .count { display: inline-block; margin-top: 10px; font-size: .88rem; color: var(--gold); font-weight: 700; }
+
+.portrait {
+  width: 112px; height: 112px; border-radius: 50%; margin: 0 auto; overflow: hidden;
+  border: 3px solid var(--gold-soft); outline: 1px solid var(--gold);
+  background: linear-gradient(150deg, #2b3a52, #1e2a3d);
+  color: #e9d9b5; display: grid; place-items: center;
+  font-family: var(--serif); font-size: 2.3rem;
+}
+.portrait img { width: 100%; height: 100%; object-fit: cover; }
+.portrait.lg { width: 180px; height: 180px; font-size: 3.6rem; }
+
+/* ---------- projects ---------- */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+.project-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column; text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.project-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.cover {
+  aspect-ratio: 16 / 7; position: relative; overflow: hidden;
+  background: var(--c, #555);
+  background-image: linear-gradient(135deg, rgba(255,255,255,.14), transparent 60%), radial-gradient(circle at 15% 120%, rgba(0,0,0,.25), transparent 60%);
+  color: #fff; display: flex; align-items: end; padding: 14px 16px;
+}
+.cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cover .chip { position: relative; }
+.chip {
+  display: inline-block; font-size: .8rem; font-weight: 700; padding: 3px 10px; border-radius: 999px;
+  background: rgba(255,255,255,.92); color: var(--c, var(--ink));
+}
+.project-card .body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.project-card .inst { color: var(--ink-soft); font-size: .9rem; }
+.project-card h3 { margin: 4px 0 8px; }
+.project-card .summary { color: var(--ink-soft); font-size: .97rem; flex: 1; }
+.dedication {
+  border-top: 1px dashed var(--line); padding-top: 12px; margin-top: 4px;
+  font-size: .92rem; color: var(--ink);
+}
+.dedication span { color: var(--gold); font-weight: 700; }
+.featured-badge {
+  position: absolute; top: 12px; inset-inline-start: 12px;
+  background: var(--gold); color: #fff; font-size: .78rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 999px;
+}
+
+/* ---------- populations ---------- */
+.pop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.pop {
+  display: block; text-decoration: none; padding: 20px 22px; border-radius: var(--radius);
+  background: var(--bg); border: 1px solid var(--line); border-inline-start: 4px solid var(--gold);
+}
+.pop:hover { border-color: var(--gold); }
+.pop h3 { margin: 0 0 4px; }
+.pop p { color: var(--ink-soft); margin: 0; font-size: .95rem; }
+.pop small { color: var(--gold); font-weight: 700; }
+
+/* ---------- filters ---------- */
+.page-head { padding: 48px 0 8px; }
+.page-head p { color: var(--ink-soft); max-width: 720px; }
+.filters {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px; display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  margin: 20px 0 14px;
+}
+.filters .wide { grid-column: 1 / -1; }
+.filters label { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; font-weight: 600; color: var(--ink-soft); }
+.filters input, .filters select {
+  font: inherit; font-size: 1rem; color: var(--ink);
+  padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; min-width: 0;
+}
+.filters input:focus, .filters select:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+@media (max-width: 760px) { .filters { grid-template-columns: 1fr 1fr; } }
+.result-line { display: flex; justify-content: space-between; align-items: center; color: var(--ink-soft); margin-bottom: 18px; gap: 12px; flex-wrap: wrap; }
+.link-btn { background: none; border: 0; color: var(--gold); font: inherit; font-weight: 700; cursor: pointer; padding: 0; }
+.empty { text-align: center; padding: 48px 20px; color: var(--ink-soft); background: var(--paper); border: 1px dashed var(--line); border-radius: var(--radius); }
+
+/* ---------- browse: facets panel ---------- */
+.browse { display: grid; grid-template-columns: 290px 1fr; gap: 28px; align-items: start; margin-top: 20px; }
+.browse-main { min-width: 0; }
+.facets {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px 18px 6px; position: sticky; top: 88px;
+  max-height: calc(100vh - 110px); overflow-y: auto;
+}
+.facets-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.facets-head strong { font-family: var(--serif); font-size: 1.2rem; }
+.facet { border: 0; margin: 0; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.facet:last-child { border-bottom: 0; }
+.facet legend { font-weight: 700; font-size: .95rem; padding: 0; margin-bottom: 8px; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.opt {
+  font: inherit; font-size: .9rem; cursor: pointer;
+  padding: 5px 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: background .12s, border-color .12s;
+}
+.opt:hover { border-color: var(--gold); }
+.opt .n { font-size: .78rem; color: var(--ink-soft); background: rgba(0,0,0,.05); border-radius: 999px; padding: 0 7px; }
+.opt.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.opt.active .n { color: #e9d29f; background: rgba(255,255,255,.12); }
+.opt:focus-visible, .active-chip:focus-visible, .more-opts:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.more-opts { font: inherit; font-size: .88rem; font-weight: 700; color: var(--gold); background: none; border: 0; cursor: pointer; padding: 5px 6px; }
+
+.browse-search label { display: block; font-weight: 700; margin-bottom: 6px; }
+.browse-search input {
+  width: 100%; font: inherit; font-size: 1.1rem; padding: 12px 20px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--paper);
+}
+.browse-search input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.active-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 16px 0 20px; min-height: 34px; }
+.active-bar .count { color: var(--ink-soft); font-weight: 600; margin-inline-end: 6px; }
+.active-chip {
+  font: inherit; font-size: .88rem; cursor: pointer;
+  background: var(--gold-soft); border: 1px solid #e2cfa6; color: var(--ink);
+  border-radius: 999px; padding: 4px 12px;
+}
+.active-chip:hover { background: #e8d8b6; }
+.facets-toggle { display: none; width: 100%; justify-content: center; margin-top: 12px; }
+.browse .projects-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
+.browse .people-grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+
+@media (max-width: 900px) {
+  .browse { grid-template-columns: 1fr; }
+  .facets { display: none; position: static; max-height: none; order: 2; }
+  .facets.open { display: block; }
+  .browse-main { display: contents; }
+  .browse-search { order: 0; }
+  .facets-toggle { display: flex; order: 1; margin: 0; }
+  .active-bar { order: 3; margin: 4px 0 8px; }
+  #browseResults { order: 4; }
+}
+
+/* ---------- person page ---------- */
+.memorial {
+  background: linear-gradient(160deg, #1e2a3d 0%, #263650 100%);
+  color: #f6f1e6; padding: 56px 0 48px;
+}
+.memorial-inner { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
+.memorial .eyebrow { color: #d9bf8a; font-weight: 600; }
+.memorial h1 { margin: 4px 0 6px; font-size: clamp(2rem, 4.5vw, 3rem); }
+.memorial .years { color: #c9ced8; font-size: 1.05rem; }
+.memorial .bio { max-width: 680px; margin-top: 16px; color: #e3e6ec; font-size: 1.08rem; }
+.memorial blockquote {
+  margin: 18px 0 0; padding-inline-start: 18px; border-inline-start: 3px solid var(--gold);
+  font-family: var(--serif); font-size: 1.3rem; color: #f2e6cc;
+}
+@media (max-width: 680px) { .memorial-inner { grid-template-columns: 1fr; text-align: center; } .memorial blockquote { text-align: start; } }
+
+.crumbs { font-size: .9rem; color: var(--ink-soft); padding-top: 20px; }
+.crumbs a { color: var(--ink-soft); }
+.memorial .crumbs, .memorial .crumbs a { color: #aab2c0; padding: 0 0 18px; }
+
+/* ---------- project page ---------- */
+.project-hero { padding: 0; }
+.project-hero .cover { aspect-ratio: auto; min-height: 260px; padding: 0; display: block; }
+.project-hero .cover-inner { position: relative; padding-block: 28px 36px; min-height: 260px; display: flex; flex-direction: column; justify-content: end; }
+.project-hero .cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,20,30,.6), transparent 70%); }
+.project-hero .cover-inner { z-index: 1; }
+.project-hero h1 { color: #fff; margin: 10px 0 4px; }
+.project-hero .inst { color: #eef0f4; font-size: 1.1rem; }
+.project-hero .crumbs, .project-hero .crumbs a { color: #eef0f4; }
+.project-hero .crumbs { padding: 0; margin-bottom: auto; padding-bottom: 24px; }
+
+.project-layout { display: grid; grid-template-columns: 1fr 340px; gap: 36px; padding: 36px 0 64px; align-items: start; }
+@media (max-width: 900px) { .project-layout { grid-template-columns: 1fr; } }
+
+.dedication-box {
+  background: var(--paper); border: 1px solid var(--gold); border-radius: var(--radius);
+  padding: 22px 24px; margin-bottom: 28px; position: relative;
+}
+.dedication-box .label { color: var(--gold); font-weight: 700; font-size: .9rem; letter-spacing: .04em; }
+.dedication-box h2 { font-size: 1.35rem; margin: 4px 0 14px; }
+.donor-list { display: flex; flex-wrap: wrap; gap: 14px; }
+.donor-chip {
+  display: flex; align-items: center; gap: 12px; text-decoration: none;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 18px 6px 6px;
+}
+.donor-chip:hover { border-color: var(--gold); }
+.donor-chip .portrait { width: 48px; height: 48px; font-size: 1.2rem; border-width: 2px; outline: 0; }
+.donor-chip b { display: block; font-family: var(--serif); }
+.donor-chip small { color: var(--ink-soft); }
+.donor-anon { color: var(--ink-soft); font-style: italic; padding: 10px 6px; }
+
+.content-section { margin-bottom: 26px; }
+.content-section h2 { font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+.content-section h2::before { content: ""; width: 18px; height: 3px; background: var(--gold); border-radius: 2px; }
+.content-section p { font-size: 1.05rem; }
+
+.numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+.number {
+  background: var(--navy); color: #f6f1e6; border-radius: var(--radius);
+  padding: 22px 18px; text-align: center;
+}
+.number b { display: block; font-family: var(--serif); font-size: 2.3rem; line-height: 1.1; color: #e9d29f; }
+.number span { font-size: .95rem; color: #d4d9e2; }
+
+.side-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 20px 22px; position: sticky; top: 90px;
+}
+.side-card dl { margin: 0; display: grid; gap: 12px; }
+.side-card dt { font-size: .85rem; color: var(--ink-soft); font-weight: 600; }
+.side-card dd { margin: 0; font-weight: 600; }
+.side-card .amount { font-family: var(--serif); font-size: 1.5rem; color: var(--navy); }
+.side-card hr { border: 0; border-top: 1px solid var(--line); margin: 16px 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: .85rem; padding: 2px 10px; border-radius: 999px; background: var(--gold-soft); text-decoration: none; }
+.tag:hover { background: #e8d8b6; }
+
+/* ---------- about ---------- */
+.prose { max-width: 760px; }
+.prose p { font-size: 1.07rem; }
+.callout {
+  background: var(--navy); color: #f1ece2; border-radius: var(--radius);
+  padding: 32px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center;
+}
+.callout h2 { color: #fff; margin-bottom: 6px; }
+.callout p { margin: 0; color: #cfd5de; }
+@media (max-width: 680px) { .callout { grid-template-columns: 1fr; } }
+
+.quote-band { text-align: center; padding: 56px 0; }
+.quote-band p { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); color: var(--navy); margin: 0; }
+.quote-band .steps-line { color: var(--gold); font-weight: 700; margin-top: 10px; font-family: var(--sans); font-size: 1rem; letter-spacing: .05em; }
+
+/* ---------- footer ---------- */
+.site-footer { background: #161f2e; color: #b9c0cc; padding: 40px 0; font-size: .95rem; }
+.site-footer strong { color: #fff; font-family: var(--serif); font-size: 1.15rem; }
+.footer-inner { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+.footer-links { display: flex; flex-direction: column; gap: 6px; }
+.footer-links a { text-decoration: none; }
+.footer-links a:hover { color: #fff; }
+
+
+/* ---------- נר זיכרון ---------- */
+.yahrzeit {
+  margin-top: 40px;
+  background: radial-gradient(ellipse at 15% 50%, rgba(255, 196, 92, .18), transparent 55%), #161f2e;
+  color: #f2e6cc;
+}
+.yahrzeit-inner { display: flex; align-items: center; gap: 36px; padding-block: 36px; }
+.yahrzeit .eyebrow { color: #d9bf8a; font-weight: 600; }
+.yahrzeit h2 { color: #fff; margin: 4px 0 16px; }
+.candle { width: 70px; flex: none; overflow: visible; }
+.candle .glow { fill: #ffcf6e; opacity: .25; animation: glow 3s ease-in-out infinite; }
+.candle .flame { fill: #ffb43a; transform-origin: 30px 40px; animation: flicker 2.2s ease-in-out infinite; }
+.candle .flame-core { fill: #fff3c4; transform-origin: 30px 40px; animation: flicker 1.7s ease-in-out infinite reverse; }
+@keyframes flicker { 0%, 100% { transform: scale(1) rotate(-1deg); } 30% { transform: scale(1.06, .95) rotate(2deg); } 60% { transform: scale(.96, 1.05) rotate(-2deg); } }
+@keyframes glow { 0%, 100% { opacity: .2; } 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .candle * { animation: none !important; } }
+.yahrzeit-people { display: flex; flex-wrap: wrap; gap: 14px; }
+.yahrzeit-person {
+  display: flex; align-items: center; gap: 14px; text-decoration: none;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(217,191,138,.35); border-radius: 999px; padding: 6px 22px 6px 6px;
+}
+.yahrzeit-person:hover { background: rgba(255,255,255,.1); }
+.yahrzeit-person .portrait { width: 64px; height: 64px; outline: 0; border-width: 2px; }
+.yahrzeit-person b { display: block; font-family: var(--serif); font-size: 1.2rem; color: #fff; }
+.yahrzeit-person small { color: #c9ced8; }
+@media (max-width: 600px) { .yahrzeit-inner { flex-direction: column; text-align: center; } .yahrzeit-people { justify-content: center; } }
+.death-date { color: #c9ced8; font-size: .98rem; margin-top: 4px; }
+.today-candle { color: #e9d29f; font-weight: 700; }
+
+/* ---------- התפלגות לפי מדינות ---------- */
+.countries { display: grid; gap: 10px; max-width: 820px; }
+.country-row { display: grid; grid-template-columns: 130px 1fr 190px; align-items: center; gap: 14px; }
+.c-name { font-weight: 600; }
+.c-bar { height: 14px; background: var(--gold-soft); border-radius: 999px; overflow: hidden; }
+.c-bar span { display: block; height: 100%; background: var(--navy); border-radius: 999px; }
+.c-num { color: var(--ink-soft); font-size: .92rem; font-variant-numeric: tabular-nums; }
+.c-num b { color: var(--ink); }
+.note { color: var(--ink-soft); font-size: .88rem; margin-top: 14px; }
+@media (max-width: 600px) { .country-row { grid-template-columns: 96px 1fr; } .c-num { grid-column: 2; margin-top: -6px; } }
+
+/* ---------- כרטיסי מידע, כפתורים, תרומה ---------- */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+.info-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+section.alt .info-card { background: var(--bg); }
+.info-card p { color: var(--ink-soft); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.callout.donate { background: linear-gradient(135deg, #1e2a3d, #2c3d5a); }
+.sample-badge {
+  display: inline-block; vertical-align: middle; font-family: var(--sans); font-size: .75rem; font-weight: 700;
+  color: #8a5a00; background: #fff1cc; border: 1px dashed #d9a93a; border-radius: 999px; padding: 1px 10px; margin-inline-start: 8px;
+}
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 20px); opacity: 0;
+  background: var(--navy); color: #fff; padding: 12px 22px; border-radius: 999px; box-shadow: var(--shadow);
+  transition: opacity .2s, transform .2s; pointer-events: none; z-index: 100; font-weight: 600;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- הוועדה ---------- */
+.members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+.member-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 20px; text-align: center; }
+.member-card h3 { margin: 14px 0 0; }
+.member-card .role { color: var(--gold); font-weight: 700; font-size: .95rem; margin-bottom: 8px; }
+.member-card p { color: var(--ink-soft); font-size: .95rem; margin: 0; }
+.contact-card { background: var(--paper); border: 1px solid var(--line); border-inline-start: 4px solid var(--gold); border-radius: var(--radius); padding: 24px 28px; }
+.contact-card p { margin: 0 0 4px; }
+.prose h2 { margin-top: 1.2em; }
+
+/* ---------- למוסדות ---------- */
+.eligible-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.eligible-grid h3 { margin-bottom: 6px; }
+.check-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; }
+.check-list li { padding-inline-start: 30px; position: relative; }
+.check-list li::before { content: "✓"; position: absolute; inset-inline-start: 0; color: #fff; background: var(--gold); width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: .75rem; top: 5px; }
+.topics { display: flex; flex-wrap: wrap; gap: 10px; }
+.topic { background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 16px; font-weight: 600; }
+.cfp {
+  display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center;
+  border: 2px dashed var(--gold); border-radius: var(--radius); padding: 28px; background: var(--paper);
+}
+@media (max-width: 680px) { .cfp { grid-template-columns: 1fr; } }
+
+/* ---------- נוהל הנצחה ---------- */
+.guidelines ol { padding-inline-start: 1.6em; }
+.guidelines li { margin-bottom: .5em; }
+.guidelines .path { margin-top: 8px; background: var(--gold-soft); border-radius: 10px; padding: 10px 14px; font-size: .95rem; }
+.warn { background: #fbf1ee; border: 1px solid #e7c3b8; border-inline-start: 4px solid #9a4e3a; border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; }
+.warn p { margin: 0 0 8px; }
+.warn p:last-child { margin: 0; }
+
+/* ---------- שקיפות ובקרה ---------- */
+.control { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 36px clamp(20px, 4vw, 44px); }
+section.alt .control { background: var(--bg); }
+.control-intro { max-width: 780px; }
+.control-intro p { color: var(--ink-soft); font-size: 1.07rem; }
+.control-steps { list-style: none; counter-reset: ctl; padding: 0; margin: 24px 0 8px; display: grid; gap: 0; }
+.control-steps li {
+  counter-increment: ctl; position: relative;
+  padding: 0 0 22px; padding-inline-start: 56px;
+}
+.control-steps li::before {
+  content: counter(ctl); position: absolute; inset-inline-start: 0; top: 0;
+  width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--navy); color: var(--gold-soft); font-weight: 700;
+}
+.control-steps li:not(:last-child)::after {
+  content: ""; position: absolute; inset-inline-start: 18px; top: 40px; bottom: 2px; width: 2px; background: var(--gold-soft);
+}
+.control-steps h3 { margin: 6px 0 4px; }
+.control-steps p { color: var(--ink-soft); margin: 0; max-width: 820px; }
+.control-outro {
+  margin: 8px 0 0; padding: 16px 20px; border-radius: 10px; background: var(--gold-soft);
+  font-family: var(--serif); font-size: 1.12rem; color: var(--navy);
+}
+.money-note {
+  margin-top: 40px; background: var(--paper); border: 1px solid var(--line);
+  border-inline-start: 4px solid var(--navy); border-radius: var(--radius); padding: 24px 28px;
+}
+.money-note p { margin: 0 0 10px; }
+.money-note p:last-child { margin: 0; }
+.member-card.chair { border-color: var(--gold); box-shadow: var(--shadow); }
+.members-grid .member-card h3 { font-size: 1.15rem; }
+
+</style>
+<a class="skip" href="#main">דלג לתוכן</a>
+  <div class="demo-banner" role="note"><b>אב טיפוס להדגמה</b> · אינו אתר רשמי. המונצחים, הפרויקטים והסכומים באתר בדויים.</div>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#/">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2c1.8 2.6 3 4.6 3 6.5A3 3 0 0 1 12 11.5 3 3 0 0 1 9 8.5C9 6.6 10.2 4.6 12 2Z" fill="currentColor"/><rect x="10" y="12.5" width="4" height="9.5" rx="1" fill="currentColor" opacity=".55"/></svg>
+        </span>
+        <span>
+          <strong>מהעיזבון – לעשייה</strong>
+          <small>אתר הנצחה למורישים</small>
+        </span>
+      </a>
+      <button class="menu-btn" aria-label="תפריט" aria-expanded="false">☰</button>
+      <nav class="nav" aria-label="ניווט ראשי">
+        <a href="#/" data-nav="home">ראשי</a>
+        <a href="#/people" data-nav="people">המונצחים</a>
+        <a href="#/projects" data-nav="projects">הפרויקטים</a>
+        <a href="#/committee" data-nav="committee">הוועדה</a>
+        <a href="#/apply" data-nav="apply">למוסדות</a>
+        <a href="#/about" data-nav="about">על האתר</a>
+        <a href="#/search" data-nav="search" aria-label="חיפוש באתר">⌕ חיפוש</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <strong>מהעיזבון – לעשייה</strong>
+        <p>אתר זה מוקדש לזכרם של האנשים שהורישו את רכושם לטובת הציבור בישראל.<br>זוכרים. מנציחים. ממשיכים את העשייה.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#/people">המונצחים</a>
+        <a href="#/projects">הפרויקטים</a>
+        <a href="#/committee">ועדת העיזבונות</a>
+        <a href="#/apply">הגשת בקשה ומערכת יעל"ה</a>
+        <a href="#/memorial-guidelines">נוהל הנצחה</a>
+        <a href="#/about">על האתר ותהליך ההקצאה</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+/*
+ * נתוני האתר — זה הקובץ היחיד שצריך לערוך כדי לעדכן תוכן.
+ * כל הנתונים כאן הם נתוני דוגמה בלבד (שמות ומוסדות בדויים) — יש להחליפם בנתונים האמיתיים.
+ *
+ * מונצח / תורם (people):
+ *   id              מזהה באנגלית, ייחודי (משמש בכתובת העמוד)
+ *   name            שם מלא
+ *   years           שנות חיים, למשל "1931–2017" (לא חובה)
+ *   city            עיר מגורים (לא חובה)
+ *   photo           נתיב לתמונה, למשל "images/people/cohen.jpg" (null = יוצג מונוגרמה)
+ *   bio             כמה משפטים על האדם
+ *   quote           ציטוט / משפט מצוואה (לא חובה)
+ *   deathDate       תאריך פטירה "YYYY-MM-DD" — ביום השנה מוצג נר זיכרון בעמוד הראשי (לא חובה)
+ *   anonymous       true = התורם ביקש להישאר אנונימי — לא יוצג בשמו בשום מקום באתר
+ *
+ * פרויקט (projects):
+ *   id, title, institution, city, year
+ *   domain          אחד מהתחומים ברשימת DOMAINS
+ *   populations     רשימה מתוך POPULATIONS
+ *   types           סוג הפרויקט — רשימה מתוך PROJECT_TYPES
+ *   summary         תמצית — משפט אחד
+ *   goal / description / outcome   שלושת שדות התוכן: מטרה, תיאור, מה בוצע בפועל
+ *   numbers         "הפרויקט במספרים" — 2–4 נתונים: { value, label }
+ *   donors          רשימת id של מונצחים שעיזבונם מימן את הפרויקט
+ *   amount          סכום ההקצבה בש"ח (מוצג רק אם CONFIG.showAmounts = true)
+ *   image           נתיב לתמונה (null = רקע צבעוני לפי תחום)
+ *   featured        true = פרויקט בעל היקף משמעותי והשפעה רוחבית — מובלט בעמוד הבית
+ */
+
+const CONFIG = {
+  siteName: "מהעיזבון – לעשייה",
+  showAmounts: true, // לשנות ל-false אם יוחלט שלא להציג סכומים
+  showOutcome: false, // "מה בוצע בפועל" בעמוד הפרויקט — מוסתר עד שיהיה מידע אמיתי (לשנות ל-true כדי להציג)
+  // נר זיכרון: "gregorian" = לפי התאריך הלועזי, "hebrew" = לפי התאריך העברי (יארצייט)
+  memorialCalendar: "gregorian",
+  // קישורים חיצוניים. כל עוד הקישור ריק ("") הכפתור מוצג, ובלחיצה מופיעה הודעה שהקישור יתווסף בקרוב
+  links: {
+    donate: "",          // עמוד תרומה / הורשה לטובת הציבור
+    yaela: "",           // מערכת יעל"ה להגשת בקשות
+    callForProposals: "", // קובץ הקול הקורא (למשל "docs/call-for-proposals.pdf")
+  },
+};
+
+/*
+ * יו"ר הוועדה וחבריה (ההרכב הנוכחי).
+ *   name    השם כפי שיוצג, כולל תואר
+ *   role    התפקיד בוועדה
+ *   bio     כמה מילים על החבר/ה (לא חובה — להוסיף רק מידע מאומת)
+ *   photo   נתיב לתמונה רשמית, למשל "images/committee/rozen.jpg" (null = יוצגו ראשי התיבות)
+ */
+const COMMITTEE = [
+  { name: "השופט (בדימוס) דוד רוזן", role: "יו\"ר הוועדה", photo: null,
+    bio: "שופט בדימוס של בית המשפט המחוזי בתל אביב ולשעבר נציב הביקורת על הפרקליטות. מכהן כיו\"ר הוועדה מאפריל 2022." },
+  { name: "מר ציון כספי", role: "חבר הוועדה", photo: null },
+  { name: "ד\"ר לאה נס", role: "חברת הוועדה", photo: null },
+  { name: "גב' נורית דאבוש", role: "חברת הוועדה", photo: null },
+  { name: "ד\"ר יחיאל שבי", role: "חבר הוועדה", photo: null },
+  { name: "מר ניר מנדל", role: "חבר הוועדה", photo: null },
+  { name: "גב' הילה שי וזאן", role: "חברת הוועדה", photo: null },
+  { name: "מר נזיה שחאדה, רו\"ח", role: "חבר הוועדה", photo: null },
+];
+
+/*
+ * צוות הוועדה (הצוות המקצועי) — אותם שדות כמו בחברי הוועדה.
+ */
+const COMMITTEE_STAFF = [
+  { name: "גב' אורטל בן שימול", role: "מנהלת הוועדה", photo: null },
+  { name: "עו\"ד אבימור אוחנה", role: "סגן מנהלת הוועדה", photo: null },
+  { name: "רו\"ח צורי חדד", role: "חשב הוועדה", photo: null },
+  { name: "גב' נחמה ברוך", role: "רכזת הוועדה", photo: null },
+  { name: "עו\"ד שלומית אלעזר", role: "רכזת הוועדה", photo: null },
+  { name: "גב' שרה נתנאל", role: "רכזת בכירה", photo: null },
+  { name: "מר יונתן קלינר", role: "אנליסט הוועדה", photo: null },
+];
+
+/*
+ * התפלגות המורישים לפי מדינה — נתונים אמיתיים מצטברים מדוח יתרת עיזבונות (2026),
+ * לפי המדינה שמופיעה בנוסח ההנצחה. נכללו רק 197 עיזבונות שבנוסח שלהם צוינה מדינה.
+ *   country, count (מספר עיזבונות), amount (סך העיזבונות בש"ח)
+ */
+const COUNTRY_STATS = [
+  { country: "ארצות הברית", count: 112, amount: 95367783 },
+  { country: "צרפת", count: 54, amount: 55195498 },
+  { country: "קנדה", count: 9, amount: 5569324 },
+  { country: "ישראל", count: 7, amount: 5144154 },
+  { country: "בריטניה", count: 4, amount: 168248 },
+  { country: "ניו זילנד", count: 2, amount: 285401 },
+  { country: "דרום אפריקה", count: 2, amount: 43038 },
+  { country: "קניה", count: 2, amount: 1347264 },
+  { country: "ארגנטינה", count: 1, amount: 9242702 },
+  { country: "אוסטרליה", count: 1, amount: 823573 },
+  { country: "איי בהאמה", count: 1, amount: 416220 },
+  { country: "גרמניה", count: 1, amount: 71372 },
+  { country: "אוסטריה", count: 1, amount: 13093 },
+];
+
+/* נושאי התמיכה העיקריים בסבב הנוכחי (מתוך דוח הבקשות) */
+const MAIN_TOPICS = [
+  "הנחלת ציונות ומורשת ישראל", "סיוע נפשי ומשפחתי לנפגעי מלחמה", "מניעת סיכונים בקרב בני נוער",
+  "נידוי חברתי, חרם ובדידות בנוער", "מועדוני ספורט לילדים ונוער", "משפחות נפגעי אלימות ופשיעה",
+  "מחקרים רפואיים", "חיזוק השירות הלאומי-אזרחי", "מרכזי חוסן נפשי בדרום ובצפון",
+];
+
+const DOMAINS = {
+  "חינוך": "#3d5a80",
+  "רווחה וסיוע": "#9a4e3a",
+  "נגישות ושילוב": "#2f7d78",
+  "אזרחים ותיקים": "#7a5c8e",
+  "ילדים ונוער": "#c07a2c",
+  "בריאות": "#4b7a3d",
+  "תרבות וקהילה": "#a2445e",
+  "הנצחה וזיכרון": "#5c5a52",
+  "פיתוח קהילתי": "#55753a",
+};
+
+const POPULATIONS = [
+  { name: "ילדים", text: "צמצום פערים, חיזוק החינוך ומתן הזדמנויות שוות." },
+  { name: "בני נוער", text: "מסגרות חינוכיות, העצמה, תעסוקה ומניעת נשירה." },
+  { name: "אנשים עם מוגבלות", text: "הנגשה, שילוב והשתתפות שוויונית בחיי הקהילה." },
+  { name: "ניצולי שואה", text: "סיוע, התאמות ושירותים תומכים בכבוד." },
+  { name: "אזרחים ותיקים", text: "פעילות, חברה ואיכות חיים בגיל השלישי." },
+  { name: "קהילה כללית", text: "מרחבים ושירותים לכלל התושבים." },
+];
+
+const PROJECT_TYPES = ["בינוי ושיפוץ", "הצטיידות", "הנגשה", "תוכנית ופעילות", "מלגות"];
+
+const PEOPLE = [
+  {
+    id: "rachel-levinson",
+    name: "רחל לוינסון ז\"ל",
+    years: "1928–2016",
+    city: "חיפה",
+    photo: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4NCjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSIzNSUiIHI9Ijc1JSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZWZlM2NmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2RiOTk0Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+DQo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4NCjxjaXJjbGUgY3g9IjEwMCIgY3k9IjQ2IiByPSIyMCIgZmlsbD0iI2M5YzZjMCIvPg0KPHBhdGggZD0iTTMwIDIwMCBRMzQgMTUwIDc4IDE0MCBMMTIyIDE0MCBRMTY2IDE1MCAxNzAgMjAwIFoiIGZpbGw9IiM1YTZjOGMiLz4NCjxyZWN0IHg9Ijg4IiB5PSIxMTgiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyOCIgcng9IjgiIGZpbGw9IiNkOWIzOWEiLz4NCjxwYXRoIGQ9Ik04MCAxNDIgTDEwMCAxNjYgTDEyMCAxNDIgTDExMiAxNDAgTDEwMCAxNTQgTDg4IDE0MCBaIiBmaWxsPSIjZjRlZmU2Ii8+DQo8ZWxsaXBzZSBjeD0iNjAiIGN5PSI5NiIgcng9IjciIHJ5PSIxMSIgZmlsbD0iI2Q5YjM5YSIvPjxlbGxpcHNlIGN4PSIxNDAiIGN5PSI5NiIgcng9IjciIHJ5PSIxMSIgZmlsbD0iI2Q5YjM5YSIvPg0KPGVsbGlwc2UgY3g9IjEwMCIgY3k9IjkwIiByeD0iMzgiIHJ5PSI0NiIgZmlsbD0iI2YxZDNiZCIvPg0KPHBhdGggZD0iTTYwIDkwIFE1OCA0OCAxMDAgNDYgUTE0MiA0OCAxNDAgOTAgUTEzMCA2MiAxMDAgNjAgUTc2IDYwIDYwIDkwIFoiIGZpbGw9IiNjOWM2YzAiLz4NCjxwYXRoIGQ9Ik03OCA4MCBRODYgNzYgOTQgODAgTTEwNiA4MCBRMTE0IDc2IDEyMiA4MCIgc3Ryb2tlPSIjYzljNmMwIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPGNpcmNsZSBjeD0iODYiIGN5PSI5MSIgcj0iMy4yIiBmaWxsPSIjM2IyZjJhIi8+PGNpcmNsZSBjeD0iMTE0IiBjeT0iOTEiIHI9IjMuMiIgZmlsbD0iIzNiMmYyYSIvPg0KPHBhdGggZD0iTTEwMCA5NiBROTcgMTA4IDEwMiAxMTAiIHN0cm9rZT0iI2Q5YjM5YSIgc3Ryb2tlLXdpZHRoPSIyLjQiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPHBhdGggZD0iTTg4IDExOCBRMTAwIDEyNiAxMTIgMTE4IiBzdHJva2U9IiM4YTRmNDUiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+DQo8cGF0aCBkPSJNNzQgOTYgUTc2IDEwMCA3OSAxMDAgTTEyNiA5NiBRMTI0IDEwMCAxMjEgMTAwIE04MiAxMTQgUTgwIDEyMCA4NCAxMjQgTTExOCAxMTQgUTEyMCAxMjAgMTE2IDEyNCBNODYgNjYgUTEwMCA2MyAxMTQgNjYiIHN0cm9rZT0iI2Q5YjM5YSIgc3Ryb2tlLXdpZHRoPSIxLjYiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iLjgiLz4NCjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZiNWE0YSIgc3Ryb2tlLXdpZHRoPSIyLjYiPjxjaXJjbGUgY3g9Ijg2IiBjeT0iOTEiIHI9IjExIi8+PGNpcmNsZSBjeD0iMTE0IiBjeT0iOTEiIHI9IjExIi8+PHBhdGggZD0iTTk3IDkwIFExMDAgODcgMTAzIDkwIE03NSA4OSBMNjIgODYgTTEyNSA4OSBMMTM4IDg2Ii8+PC9nPg0KPGNpcmNsZSBjeD0iNjAiIGN5PSIxMDgiIHI9IjMiIGZpbGw9IiNlOWQyOWYiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSIxMDgiIHI9IjMiIGZpbGw9IiNlOWQyOWYiLz4NCjwvc3ZnPg==", // תמונת דמה
+    deathDate: "2016-03-14", // תאריך דמה
+    bio: "רחל עלתה ארצה כנערה צעירה אחרי המלחמה, ועבדה במשך ארבעים שנה כמורה ומחנכת בבתי ספר יסודיים בחיפה. תלמידיה זוכרים אותה כמי שלא ויתרה על אף ילד. בצוואתה ביקשה שרכושה יוקדש לחינוך ילדים שלא זכו לאותן הזדמנויות.",
+    quote: "כל ילד ראוי למורה אחד שמאמין בו.",
+  },
+  {
+    id: "moshe-ben-ami",
+    name: "משה בן עמי ז\"ל",
+    years: "1935–2019",
+    city: "ירושלים",
+    photo: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4NCjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSIzNSUiIHI9Ijc1JSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZWZlM2NmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2RiOTk0Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+DQo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4NCjxwYXRoIGQ9Ik0zMCAyMDAgUTM0IDE1MCA3OCAxNDAgTDEyMiAxNDAgUTE2NiAxNTAgMTcwIDIwMCBaIiBmaWxsPSIjNmI1YTQ1Ii8+DQo8cmVjdCB4PSI4OCIgeT0iMTE4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjgiIHJ4PSI4IiBmaWxsPSIjYjM4MTYwIi8+DQo8cGF0aCBkPSJNODAgMTQyIEwxMDAgMTY2IEwxMjAgMTQyIEwxMTIgMTQwIEwxMDAgMTU0IEw4OCAxNDAgWiIgZmlsbD0iI2U4ZTJkNiIvPg0KPGVsbGlwc2UgY3g9IjYwIiBjeT0iOTYiIHJ4PSI3IiByeT0iMTEiIGZpbGw9IiNiMzgxNjAiLz48ZWxsaXBzZSBjeD0iMTQwIiBjeT0iOTYiIHJ4PSI3IiByeT0iMTEiIGZpbGw9IiNiMzgxNjAiLz4NCjxlbGxpcHNlIGN4PSIxMDAiIGN5PSI5MCIgcng9IjM4IiByeT0iNDYiIGZpbGw9IiNkMmEyN2MiLz4NCjxwYXRoIGQ9Ik02MCA5MiBRNTggNjYgNjYgNjAgTDY4IDg2IFogTTE0MCA5MiBRMTQyIDY2IDEzNCA2MCBMMTMyIDg2IFoiIGZpbGw9IiNiZGI4YjAiLz4NCjxwYXRoIGQ9Ik03OCA4MCBRODYgNzYgOTQgODAgTTEwNiA4MCBRMTE0IDc2IDEyMiA4MCIgc3Ryb2tlPSIjOWQ5NjhjIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPGNpcmNsZSBjeD0iODYiIGN5PSI5MSIgcj0iMy4yIiBmaWxsPSIjM2IyZjJhIi8+PGNpcmNsZSBjeD0iMTE0IiBjeT0iOTEiIHI9IjMuMiIgZmlsbD0iIzNiMmYyYSIvPg0KPHBhdGggZD0iTTEwMCA5NiBROTcgMTA4IDEwMiAxMTAiIHN0cm9rZT0iI2IzODE2MCIgc3Ryb2tlLXdpZHRoPSIyLjQiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPHBhdGggZD0iTTg4IDExOCBRMTAwIDEyNiAxMTIgMTE4IiBzdHJva2U9IiM4YTRmNDUiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+DQo8cGF0aCBkPSJNNzQgOTYgUTc2IDEwMCA3OSAxMDAgTTEyNiA5NiBRMTI0IDEwMCAxMjEgMTAwIE04MiAxMTQgUTgwIDEyMCA4NCAxMjQgTTExOCAxMTQgUTEyMCAxMjAgMTE2IDEyNCBNODYgNjYgUTEwMCA2MyAxMTQgNjYiIHN0cm9rZT0iI2IzODE2MCIgc3Ryb2tlLXdpZHRoPSIxLjYiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iLjgiLz4NCjxwYXRoIGQ9Ik04NiAxMTQgUTEwMCAxMDggMTE0IDExNCBRMTAwIDExOCA4NiAxMTQgWiIgZmlsbD0iI2JkYjhiMCIvPg0KPC9zdmc+", // תמונת דמה
+    deathDate: "2019-07-02", // תאריך דמה
+    bio: "משה היה נגר ובעל בית מלאכה קטן בשכונת נחלאות. אחרי פציעה בצבא ידע מקרוב מה המשמעות של מגבלה בניידות, ובמשך שנים התנדב בבניית רמפות ועזרים לשכניו. את עיזבונו הותיר לטובת הנגשת מבנים ציבוריים.",
+    quote: null,
+  },
+  {
+    id: "zipora-adler",
+    name: "ציפורה אדלר ז\"ל",
+    years: "1924–2018",
+    city: "תל אביב",
+    photo: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4NCjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSIzNSUiIHI9Ijc1JSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZWZlM2NmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2RiOTk0Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+DQo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4NCjxwYXRoIGQ9Ik0zMCAyMDAgUTM0IDE1MCA3OCAxNDAgTDEyMiAxNDAgUTE2NiAxNTAgMTcwIDIwMCBaIiBmaWxsPSIjN2E0YjVjIi8+DQo8cmVjdCB4PSI4OCIgeT0iMTE4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjgiIHJ4PSI4IiBmaWxsPSIjZDliMzlhIi8+DQo8cGF0aCBkPSJNODQgMTQ2IFExMDAgMTY2IDExNiAxNDYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y0ZWZlNiIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtZGFzaGFycmF5PSIwLjEgNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+DQo8ZWxsaXBzZSBjeD0iNjAiIGN5PSI5NiIgcng9IjciIHJ5PSIxMSIgZmlsbD0iI2Q5YjM5YSIvPjxlbGxpcHNlIGN4PSIxNDAiIGN5PSI5NiIgcng9IjciIHJ5PSIxMSIgZmlsbD0iI2Q5YjM5YSIvPg0KPGVsbGlwc2UgY3g9IjEwMCIgY3k9IjkwIiByeD0iMzgiIHJ5PSI0NiIgZmlsbD0iI2YxZDNiZCIvPg0KPHBhdGggZD0iTTU4IDk2IFE1MCA1MCAxMDAgNDIgUTE1MCA1MCAxNDIgOTYgUTE0MCA3NCAxMjggNjYgUTEyMCA3NCAxMDggNjYgUTk4IDc0IDg4IDY2IFE3NiA3NCA3MCA2NiBRNjAgNzQgNTggOTYgWiIgZmlsbD0iI2U2ZTJkYSIvPg0KPHBhdGggZD0iTTc4IDgwIFE4NiA3NiA5NCA4MCBNMTA2IDgwIFExMTQgNzYgMTIyIDgwIiBzdHJva2U9IiNlNmUyZGEiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+DQo8Y2lyY2xlIGN4PSI4NiIgY3k9IjkxIiByPSIzLjIiIGZpbGw9IiMzYjJmMmEiLz48Y2lyY2xlIGN4PSIxMTQiIGN5PSI5MSIgcj0iMy4yIiBmaWxsPSIjM2IyZjJhIi8+DQo8cGF0aCBkPSJNMTAwIDk2IFE5NyAxMDggMTAyIDExMCIgc3Ryb2tlPSIjZDliMzlhIiBzdHJva2Utd2lkdGg9IjIuNCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+DQo8cGF0aCBkPSJNODggMTE4IFExMDAgMTI2IDExMiAxMTgiIHN0cm9rZT0iIzhhNGY0NSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjxwYXRoIGQ9Ik03NCA5NiBRNzYgMTAwIDc5IDEwMCBNMTI2IDk2IFExMjQgMTAwIDEyMSAxMDAgTTgyIDExNCBRODAgMTIwIDg0IDEyNCBNMTE4IDExNCBRMTIwIDEyMCAxMTYgMTI0IE04NiA2NiBRMTAwIDYzIDExNCA2NiIgc3Ryb2tlPSIjZDliMzlhIiBzdHJva2Utd2lkdGg9IjEuNiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuOCIvPg0KPC9zdmc+", // תמונת דמה
+    deathDate: "2018-01-27", // תאריך דמה
+    bio: "ציפורה, ניצולת שואה, הקימה בישראל משפחה ובית חם, ופעלה שנים רבות בארגוני ניצולים. היא האמינה שזיכרון צריך להפוך לעשייה, וביקשה שעיזבונה יסייע לניצולים אחרים ולהעברת הזיכרון לדור הבא.",
+    quote: "זוכרים – כדי לעשות טוב יותר.",
+  },
+  {
+    id: "yosef-mizrahi",
+    name: "יוסף מזרחי ז\"ל",
+    years: "1940–2020",
+    city: "באר שבע",
+    photo: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4NCjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSIzNSUiIHI9Ijc1JSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZWZlM2NmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2RiOTk0Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+DQo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4NCjxwYXRoIGQ9Ik0zMCAyMDAgUTM0IDE1MCA3OCAxNDAgTDEyMiAxNDAgUTE2NiAxNTAgMTcwIDIwMCBaIiBmaWxsPSIjZjJmMGVhIi8+DQo8cmVjdCB4PSI4OCIgeT0iMTE4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjgiIHJ4PSI4IiBmaWxsPSIjYzQ5MzcyIi8+DQo8cGF0aCBkPSJNODAgMTQyIEwxMDAgMTY2IEwxMjAgMTQyIEwxMTIgMTQwIEwxMDAgMTU0IEw4OCAxNDAgWiIgZmlsbD0iI2RjZDhjZiIvPg0KPHBhdGggZD0iTTk2IDE1NCBMMTA0IDE1NCBMMTA3IDE5MCBMMTAwIDE5OCBMOTMgMTkwIFoiIGZpbGw9IiMzZDVhODAiLz4NCjxlbGxpcHNlIGN4PSI2MCIgY3k9Ijk2IiByeD0iNyIgcnk9IjExIiBmaWxsPSIjYzQ5MzcyIi8+PGVsbGlwc2UgY3g9IjE0MCIgY3k9Ijk2IiByeD0iNyIgcnk9IjExIiBmaWxsPSIjYzQ5MzcyIi8+DQo8ZWxsaXBzZSBjeD0iMTAwIiBjeT0iOTAiIHJ4PSIzOCIgcnk9IjQ2IiBmaWxsPSIjZTBiNDhmIi8+DQo8cGF0aCBkPSJNNjAgODggUTU4IDQ2IDEwMCA0NCBRMTQyIDQ2IDE0MCA4OCBRMTM2IDY2IDEyMCA2MiBRMTAwIDcwIDgwIDYyIFE2NCA2NiA2MCA4OCBaIiBmaWxsPSIjOWU5YTkzIi8+DQo8cGF0aCBkPSJNNzggODAgUTg2IDc2IDk0IDgwIE0xMDYgODAgUTExNCA3NiAxMjIgODAiIHN0cm9rZT0iIzllOWE5MyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjxjaXJjbGUgY3g9Ijg2IiBjeT0iOTEiIHI9IjMuMiIgZmlsbD0iIzNiMmYyYSIvPjxjaXJjbGUgY3g9IjExNCIgY3k9IjkxIiByPSIzLjIiIGZpbGw9IiMzYjJmMmEiLz4NCjxwYXRoIGQ9Ik0xMDAgOTYgUTk3IDEwOCAxMDIgMTEwIiBzdHJva2U9IiNjNDkzNzIiIHN0cm9rZS13aWR0aD0iMi40IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjxwYXRoIGQ9Ik04OCAxMTggUTEwMCAxMjYgMTEyIDExOCIgc3Ryb2tlPSIjOGE0ZjQ1IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPHBhdGggZD0iTTc0IDk2IFE3NiAxMDAgNzkgMTAwIE0xMjYgOTYgUTEyNCAxMDAgMTIxIDEwMCBNODIgMTE0IFE4MCAxMjAgODQgMTI0IE0xMTggMTE0IFExMjAgMTIwIDExNiAxMjQgTTg2IDY2IFExMDAgNjMgMTE0IDY2IiBzdHJva2U9IiNjNDkzNzIiIHN0cm9rZS13aWR0aD0iMS42IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii44Ii8+DQo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMzYjNiM2IiIHN0cm9rZS13aWR0aD0iMi42Ij48Y2lyY2xlIGN4PSI4NiIgY3k9IjkxIiByPSIxMSIvPjxjaXJjbGUgY3g9IjExNCIgY3k9IjkxIiByPSIxMSIvPjxwYXRoIGQ9Ik05NyA5MCBRMTAwIDg3IDEwMyA5MCBNNzUgODkgTDYyIDg2IE0xMjUgODkgTDEzOCA4NiIvPjwvZz4NCjwvc3ZnPg==", // תמונת דמה
+    deathDate: "2020-12-09", // תאריך דמה
+    bio: "יוסף היה רופא משפחה בבאר שבע ובעיירות הנגב. הוא ליווה דורות של מטופלים והכיר כל משפחה בשמה. את עיזבונו הקדיש לחיזוק שירותי הבריאות והרווחה בפריפריה.",
+    quote: null,
+  },
+  {
+    id: "hana-gold",
+    name: "חנה גולד ז\"ל",
+    years: "1932–2021",
+    city: "נתניה",
+    photo: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4NCjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSIzNSUiIHI9Ijc1JSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZWZlM2NmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2RiOTk0Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+DQo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4NCjxwYXRoIGQ9Ik01MiA5MiBRNTAgNDQgMTAwIDQwIFExNTAgNDQgMTQ4IDkyIEwxNTAgMTI4IFExMDAgMTM2IDUwIDEyOCBaIiBmaWxsPSIjZDhkM2NhIi8+DQo8cGF0aCBkPSJNMzAgMjAwIFEzNCAxNTAgNzggMTQwIEwxMjIgMTQwIFExNjYgMTUwIDE3MCAyMDAgWiIgZmlsbD0iIzJmNGE1YSIvPg0KPHJlY3QgeD0iODgiIHk9IjExOCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI4IiByeD0iOCIgZmlsbD0iI2Q5YjM5YSIvPg0KPHBhdGggZD0iTTg0IDE0NiBRMTAwIDE2NiAxMTYgMTQ2IiBmaWxsPSJub25lIiBzdHJva2U9IiNmNGVmZTYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWRhc2hhcnJheT0iMC4xIDUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPGVsbGlwc2UgY3g9IjYwIiBjeT0iOTYiIHJ4PSI3IiByeT0iMTEiIGZpbGw9IiNkOWIzOWEiLz48ZWxsaXBzZSBjeD0iMTQwIiBjeT0iOTYiIHJ4PSI3IiByeT0iMTEiIGZpbGw9IiNkOWIzOWEiLz4NCjxlbGxpcHNlIGN4PSIxMDAiIGN5PSI5MCIgcng9IjM4IiByeT0iNDYiIGZpbGw9IiNmMWQzYmQiLz4NCjxwYXRoIGQ9Ik02MCA5MCBRNTggNDggMTAwIDQ2IFExNDIgNDggMTQwIDkwIFExMzAgNjIgMTAwIDYwIFE3NiA2MCA2MCA5MCBaIiBmaWxsPSIjZDhkM2NhIi8+DQo8cGF0aCBkPSJNNzggODAgUTg2IDc2IDk0IDgwIE0xMDYgODAgUTExNCA3NiAxMjIgODAiIHN0cm9rZT0iI2Q4ZDNjYSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjxjaXJjbGUgY3g9Ijg2IiBjeT0iOTEiIHI9IjMuMiIgZmlsbD0iIzNiMmYyYSIvPjxjaXJjbGUgY3g9IjExNCIgY3k9IjkxIiByPSIzLjIiIGZpbGw9IiMzYjJmMmEiLz4NCjxwYXRoIGQ9Ik0xMDAgOTYgUTk3IDEwOCAxMDIgMTEwIiBzdHJva2U9IiNkOWIzOWEiIHN0cm9rZS13aWR0aD0iMi40IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjxwYXRoIGQ9Ik04OCAxMTggUTEwMCAxMjYgMTEyIDExOCIgc3Ryb2tlPSIjOGE0ZjQ1IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPHBhdGggZD0iTTc0IDk2IFE3NiAxMDAgNzkgMTAwIE0xMjYgOTYgUTEyNCAxMDAgMTIxIDEwMCBNODIgMTE0IFE4MCAxMjAgODQgMTI0IE0xMTggMTE0IFExMjAgMTIwIDExNiAxMjQgTTg2IDY2IFExMDAgNjMgMTE0IDY2IiBzdHJva2U9IiNkOWIzOWEiIHN0cm9rZS13aWR0aD0iMS42IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii44Ii8+DQo8Y2lyY2xlIGN4PSI2MCIgY3k9IjEwOCIgcj0iMyIgZmlsbD0iI2U5ZDI5ZiIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjEwOCIgcj0iMyIgZmlsbD0iI2U5ZDI5ZiIvPg0KPC9zdmc+", // תמונת דמה
+    deathDate: "2021-10-28", // תאריך דמה
+    bio: "חנה ניגנה בפסנתר מגיל ארבע, ולימדה מוזיקה לילדים ולמבוגרים כל חייה. היא האמינה שתרבות היא צורך ולא מותרות. עיזבונה מימן מרחבי תרבות ויצירה לקהילה.",
+    quote: "מוזיקה היא שפה שכולם מבינים.",
+  },
+  {
+    id: "david-shapira",
+    name: "דוד שפירא ז\"ל",
+    years: "1947–2022",
+    city: "קריית שמונה",
+    photo: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4NCjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0iYmciIGN4PSI1MCUiIGN5PSIzNSUiIHI9Ijc1JSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZWZlM2NmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2RiOTk0Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+DQo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNiZykiLz4NCjxwYXRoIGQ9Ik0zMCAyMDAgUTM0IDE1MCA3OCAxNDAgTDEyMiAxNDAgUTE2NiAxNTAgMTcwIDIwMCBaIiBmaWxsPSIjNTU3NTNhIi8+DQo8cmVjdCB4PSI4OCIgeT0iMTE4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjgiIHJ4PSI4IiBmaWxsPSIjYzQ5MzcyIi8+DQo8cGF0aCBkPSJNODAgMTQyIEwxMDAgMTY2IEwxMjAgMTQyIEwxMTIgMTQwIEwxMDAgMTU0IEw4OCAxNDAgWiIgZmlsbD0iI2U4ZTJkNiIvPg0KPGVsbGlwc2UgY3g9IjYwIiBjeT0iOTYiIHJ4PSI3IiByeT0iMTEiIGZpbGw9IiNjNDkzNzIiLz48ZWxsaXBzZSBjeD0iMTQwIiBjeT0iOTYiIHJ4PSI3IiByeT0iMTEiIGZpbGw9IiNjNDkzNzIiLz4NCjxlbGxpcHNlIGN4PSIxMDAiIGN5PSI5MCIgcng9IjM4IiByeT0iNDYiIGZpbGw9IiNlMGI0OGYiLz4NCjxwYXRoIGQ9Ik02MCA4OCBRNTggNDYgMTAwIDQ0IFExNDIgNDYgMTQwIDg4IFExMzYgNjYgMTIwIDYyIFExMDAgNzAgODAgNjIgUTY0IDY2IDYwIDg4IFoiIGZpbGw9IiNhN2EzOWMiLz4NCjxwYXRoIGQ9Ik03OCA4MCBRODYgNzYgOTQgODAgTTEwNiA4MCBRMTE0IDc2IDEyMiA4MCIgc3Ryb2tlPSIjYTdhMzljIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPGNpcmNsZSBjeD0iODYiIGN5PSI5MSIgcj0iMy4yIiBmaWxsPSIjM2IyZjJhIi8+PGNpcmNsZSBjeD0iMTE0IiBjeT0iOTEiIHI9IjMuMiIgZmlsbD0iIzNiMmYyYSIvPg0KPHBhdGggZD0iTTEwMCA5NiBROTcgMTA4IDEwMiAxMTAiIHN0cm9rZT0iI2M0OTM3MiIgc3Ryb2tlLXdpZHRoPSIyLjQiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPHBhdGggZD0iTTg4IDExOCBRMTAwIDEyNiAxMTIgMTE4IiBzdHJva2U9IiM4YTRmNDUiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+DQo8cGF0aCBkPSJNNzQgOTYgUTc2IDEwMCA3OSAxMDAgTTEyNiA5NiBRMTI0IDEwMCAxMjEgMTAwIE04MiAxMTQgUTgwIDEyMCA4NCAxMjQgTTExOCAxMTQgUTEyMCAxMjAgMTE2IDEyNCBNODYgNjYgUTEwMCA2MyAxMTQgNjYiIHN0cm9rZT0iI2M0OTM3MiIgc3Ryb2tlLXdpZHRoPSIxLjYiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iLjgiLz4NCjxwYXRoIGQ9Ik02NCAxMDQgUTY2IDE0MCAxMDAgMTQyIFExMzQgMTQwIDEzNiAxMDQgUTEzMCAxMjQgMTEyIDEyMiBRMTAwIDEzMCA4OCAxMjIgUTcwIDEyNCA2NCAxMDQgWiIgZmlsbD0iI2I5YjRhYiIvPg0KPHBhdGggZD0iTTkwIDExOSBRMTAwIDEyNCAxMTAgMTE5IiBzdHJva2U9IiM4YTRmNDUiIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjwvc3ZnPg==", // תמונת דמה
+    deathDate: "2022-05-19", // תאריך דמה
+    bio: "דוד היה מדריך נוער ואיש חינוך בגליל העליון. הוא הקים חוגי טיולים ומסגרות לנוער בסיכון, ורבים מבוגריו מספרים שהוא שינה את מסלול חייהם.",
+    quote: null,
+  },
+  {
+    id: "anon-1",
+    name: "תורם אנונימי",
+    anonymous: true,
+  },
+];
+
+const PROJECTS = [
+  {
+    id: "reading-corners-haifa",
+    title: "פינות קריאה וליווי לימודי",
+    institution: "בית ספר יסודי 'נווה אור'",
+    city: "חיפה",
+    year: 2019,
+    domain: "חינוך",
+    populations: ["ילדים"],
+    types: ["הצטיידות", "תוכנית ופעילות"],
+    summary: "חיזוק מיומנויות השפה העברית אצל תלמידי כיתות א'–ג'.",
+    goal: "לצמצם פערים בקריאה ובהבנת הנקרא בקרב תלמידים בכיתות הנמוכות.",
+    description: "הקמת פינות קריאה מאובזרות בכל כיתה, רכישת ספרייה מותאמת גיל, והפעלת תוכנית ליווי בקבוצות קטנות בהנחיית מורות מומחיות לקריאה.",
+    outcome: "הוקמו 12 פינות קריאה, נרכשו כ-1,500 ספרים, ו-140 תלמידים השתתפו בתוכנית הליווי במשך שנת לימודים מלאה.",
+    numbers: [
+      { value: "140", label: "תלמידים בתוכנית" },
+      { value: "1,500", label: "ספרים חדשים" },
+      { value: "12", label: "פינות קריאה" },
+    ],
+    donors: ["rachel-levinson"],
+    amount: 180000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjY2ZlMmYwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjRlY2RjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjYTljMDhhIi8+PHJlY3QgeD0iMjIwIiB5PSIxMDAiIHdpZHRoPSIzNjAiIGhlaWdodD0iMTcwIiBmaWxsPSIjZDljN2E3Ii8+PHBhdGggZD0iTTIxMCAxMDAgTDQwMC4wIDUwIEw1OTAgMTAwIFoiIGZpbGw9IiM5YTRlM2EiLz48cmVjdCB4PSIyNDAiIHk9IjEyMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIyOTAiIHk9IjEyMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzNDAiIHk9IjEyMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzOTAiIHk9IjEyMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0NDAiIHk9IjEyMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0OTAiIHk9IjEyMCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIyNDAiIHk9IjE3MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIyOTAiIHk9IjE3MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzNDAiIHk9IjE3MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzOTAiIHk9IjE3MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0NDAiIHk9IjE3MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0OTAiIHk9IjE3MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzODQuMCIgeT0iMjMyIiB3aWR0aD0iMzIiIGhlaWdodD0iMzgiIHJ4PSI0IiBmaWxsPSIjM2IyZjJhIiBvcGFjaXR5PSIuNzUiLz48cmVjdCB4PSIxMjYiIHk9IjIzMCIgd2lkdGg9IjgiIGhlaWdodD0iNDAiIGZpbGw9IiM2YjRmMzUiLz48Y2lyY2xlIGN4PSIxMzAiIGN5PSIyMTgiIHI9IjI2IiBmaWxsPSIjNWY4YTRiIi8+PHJlY3QgeD0iNjU2LjQiIHk9IjIzNC4wIiB3aWR0aD0iNy4yIiBoZWlnaHQ9IjM2LjAiIGZpbGw9IiM2YjRmMzUiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSIyMjMuMiIgcj0iMjMuNDAwMDAwMDAwMDAwMDAyIiBmaWxsPSIjNWY4YTRiIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzMwIDYwKSI+PHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiMzZDVhODAiLz48dGV4dCB4PSI3MCIgeT0iMTUiIGZvbnQtc2l6ZT0iMTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiIGZvbnQtZmFtaWx5PSJBcmlhbCI+U0NIT09MPC90ZXh0PjwvZz48L3N2Zz4=", // איור דמה
+    featured: false,
+  },
+  {
+    id: "science-lab-kiryat-shmona",
+    title: "מעבדת מדע וטכנולוגיה לנוער",
+    institution: "תיכון 'גליל'",
+    city: "קריית שמונה",
+    year: 2021,
+    domain: "חינוך",
+    populations: ["בני נוער"],
+    types: ["בינוי ושיפוץ", "הצטיידות"],
+    summary: "מעבדה חדשה שמאפשרת לבני נוער בפריפריה ללמוד מדעים ברמה מוגברת.",
+    goal: "להנגיש לימודי מדעים ברמה גבוהה לתלמידים בצפון הארץ.",
+    description: "שיפוץ חלל קיים והפיכתו למעבדה מאובזרת לכימיה, פיזיקה ורובוטיקה, כולל ציוד מדידה, עמדות עבודה ומחשבים.",
+    outcome: "המעבדה נפתחה בתחילת שנת הלימודים, ומספר התלמידים הלומדים מדעים ברמה מוגברת עלה בתוך שנתיים.",
+    numbers: [
+      { value: "320", label: "תלמידים בשנה" },
+      { value: "פי 2", label: "תלמידים במגמות מדעיות" },
+      { value: "24", label: "עמדות עבודה" },
+    ],
+    donors: ["david-shapira", "rachel-levinson"],
+    amount: 650000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjY2ZlMmYwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjRlY2RjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjYTljMDhhIi8+PHJlY3QgeD0iMTYwIiB5PSIxMjAiIHdpZHRoPSI0ODAiIGhlaWdodD0iMTUwIiBmaWxsPSIjYzlkM2RjIi8+PHJlY3QgeD0iMTgwIiB5PSIxNDAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMjMwIiB5PSIxNDAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMjgwIiB5PSIxNDAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzMwIiB5PSIxNDAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzgwIiB5PSIxNDAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNDMwIiB5PSIxNDAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNDgwIiB5PSIxNDAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNTMwIiB5PSIxNDAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNTgwIiB5PSIxNDAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzg0LjAiIHk9IjIzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjM4IiByeD0iNCIgZmlsbD0iIzNiMmYyYSIgb3BhY2l0eT0iLjc1Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTYwIDEyMCkiPjxwYXRoIGQ9Ik0yMCAwIGgyMCB2NDAgbDMwIDYwIGE4IDggMCAwIDEgLTcgMTIgaC02NiBhOCA4IDAgMCAxIC03IC0xMiBsMzAgLTYwIFoiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzNkNWE4MCIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHBhdGggZD0iTS00IDgwIGg2OCBsMTQgMjYgYTYgNiAwIDAgMSAtNSA4IGgtODYgYTYgNiAwIDAgMSAtNSAtOCBaIiBmaWxsPSIjMmY3ZDc4IiBvcGFjaXR5PSIuNyIvPjwvZz48L3N2Zz4=", // איור דמה
+    featured: true,
+  },
+  {
+    id: "accessible-community-center",
+    title: "הנגשת המרכז הקהילתי",
+    institution: "המתנ\"ס השכונתי",
+    city: "ירושלים",
+    year: 2020,
+    domain: "נגישות ושילוב",
+    populations: ["אנשים עם מוגבלות", "אזרחים ותיקים"],
+    types: ["הנגשה", "בינוי ושיפוץ"],
+    summary: "הנגשה מלאה של מבנה המתנ\"ס כך שכל תושב יוכל להשתתף בפעילות.",
+    goal: "לאפשר לאנשים עם מוגבלות ולאזרחים ותיקים להשתתף בפעילות הקהילתית באופן עצמאי.",
+    description: "התקנת מעלית, רמפות, שירותים נגישים, שילוט בכתב ברייל ומערכת הגברה לכבדי שמיעה.",
+    outcome: "המבנה הונגש במלואו וקיבל אישור נגישות. מספר המשתתפים עם מוגבלות בחוגי המתנ\"ס גדל משמעותית.",
+    numbers: [
+      { value: "1", label: "מעלית חדשה" },
+      { value: "6", label: "שירותים נגישים" },
+      { value: "+80", label: "משתתפים חדשים עם מוגבלות" },
+    ],
+    donors: ["moshe-ben-ami"],
+    amount: 900000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZjNkOWI4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjhlZmUwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjYTljMDhhIi8+PHJlY3QgeD0iMjUwIiB5PSIxMTAiIHdpZHRoPSIzNDAiIGhlaWdodD0iMTYwIiBmaWxsPSIjZTdkNGI1Ii8+PHJlY3QgeD0iMjcwIiB5PSIxMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzIwIiB5PSIxMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzcwIiB5PSIxMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNDIwIiB5PSIxMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNDcwIiB5PSIxMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNTIwIiB5PSIxMzAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMjcwIiB5PSIxODAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzIwIiB5PSIxODAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzcwIiB5PSIxODAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNDIwIiB5PSIxODAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNDcwIiB5PSIxODAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNTIwIiB5PSIxODAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNDA0LjAiIHk9IjIzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjM4IiByeD0iNCIgZmlsbD0iIzNiMmYyYSIgb3BhY2l0eT0iLjc1Ii8+PHBhdGggZD0iTTEyMCAyNzAgTDI1MCAyMjUgTDI1MCAyNzAgWiIgZmlsbD0iI2I1YTQ4YSIvPjxwYXRoIGQ9Ik0xMjAgMjYyIEwyNTAgMjE3IiBzdHJva2U9IiM1YTVmNmIiIHN0cm9rZS13aWR0aD0iNSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2MCAxNjApIiBmaWxsPSIjMmY3ZDc4Ij48Y2lyY2xlIGN4PSIyMCIgY3k9IjgiIHI9IjgiLz48cGF0aCBkPSJNMTQgMjAgaDEyIHYyMCBoMTggbDggMjQgLTggMyAtNiAtMTcgaC0yNCBaIi8+PGNpcmNsZSBjeD0iMjAiIGN5PSI1NiIgcj0iMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzJmN2Q3OCIgc3Ryb2tlLXdpZHRoPSI2Ii8+PC9nPjwvc3ZnPg==", // איור דמה
+    featured: true,
+  },
+  {
+    id: "accessible-playground",
+    title: "גן שעשועים משלב",
+    institution: "עיריית ירושלים – מינהל קהילה",
+    city: "ירושלים",
+    year: 2022,
+    domain: "נגישות ושילוב",
+    populations: ["ילדים", "אנשים עם מוגבלות"],
+    types: ["הנגשה", "בינוי ושיפוץ"],
+    summary: "גן משחקים שבו ילדים עם ובלי מוגבלות משחקים יחד.",
+    goal: "ליצור מרחב משחק משותף לכל הילדים בשכונה.",
+    description: "תכנון והקמה של גן שעשועים עם מתקנים נגישים לכיסאות גלגלים, משטחים בטיחותיים ומתקני חושים.",
+    outcome: "הגן נפתח לציבור ומשמש מאות משפחות מדי שבוע, כולל בתי ספר לחינוך מיוחד מהסביבה.",
+    numbers: [
+      { value: "14", label: "מתקנים נגישים" },
+      { value: "400+", label: "ביקורים בשבוע" },
+    ],
+    donors: ["moshe-ben-ami", "anon-1"],
+    amount: 420000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjY2ZlMmYwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjRlY2RjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjYjljZjk2Ii8+PHBhdGggZD0iTTIyMCAyNzAgTDI3MCAxMzAgTDMyMCAyNzAgTTI3MCAxMzAgTDQ3MCAxMzAgTTQyMCAyNzAgTDQ3MCAxMzAgTDUyMCAyNzAiIHN0cm9rZT0iI2MwN2EyYyIgc3Ryb2tlLXdpZHRoPSIxMCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0zMzAgMTMwIHY4MCBNMzcwIDEzMCB2ODAiIHN0cm9rZT0iIzVhNWY2YiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHJlY3QgeD0iMzIyIiB5PSIyMDgiIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMCIgcng9IjQiIGZpbGw9IiMzZDVhODAiLz48cGF0aCBkPSJNNTYwIDI3MCBMNjAwIDE2MCBMNjQwIDE2MCBMNzAwIDI3MCIgZmlsbD0iI2U4Yjg0YSIvPjxyZWN0IHg9IjExNiIgeT0iMjMwIiB3aWR0aD0iOCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzZiNGYzNSIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjIxOCIgcj0iMjYiIGZpbGw9IiM1ZjhhNGIiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMjAuNCIgcj0iOC4wIiBmaWxsPSIjZTJiNDhmIi8+PHJlY3QgeD0iMzkxLjIiIHk9IjIzMC4wIiB3aWR0aD0iMTcuNiIgaGVpZ2h0PSIzMi4wIiByeD0iNy4yIiBmaWxsPSIjYTI0NDVlIi8+PC9zdmc+", // איור דמה
+    featured: false,
+  },
+  {
+    id: "survivors-day-center",
+    title: "מרכז יום לניצולי שואה",
+    institution: "עמותת 'יד לניצול'",
+    city: "תל אביב",
+    year: 2019,
+    domain: "רווחה וסיוע",
+    populations: ["ניצולי שואה", "אזרחים ותיקים"],
+    types: ["בינוי ושיפוץ", "הצטיידות"],
+    summary: "מרכז יום חם ומאובזר שמעניק לניצולים חברה, טיפול ופעילות.",
+    goal: "להפיג בדידות ולשפר את איכות החיים של ניצולי שואה החיים לבדם.",
+    description: "שיפוץ והצטיידות של מרכז יום, כולל חדר אוכל, חדר פעילות, פינת טיפול רגשי והסעות.",
+    outcome: "המרכז פועל חמישה ימים בשבוע ומשרת ניצולים מכל רחבי העיר.",
+    numbers: [
+      { value: "85", label: "ניצולים מבקרים קבועים" },
+      { value: "5", label: "ימי פעילות בשבוע" },
+      { value: "12", label: "מתנדבים" },
+    ],
+    donors: ["zipora-adler"],
+    amount: 550000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZjNkOWI4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjhlZmUwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjYTljMDhhIi8+PHJlY3QgeD0iMjQwIiB5PSIxMjAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMTUwIiBmaWxsPSIjZWFkOWMyIi8+PHBhdGggZD0iTTIzMCAxMjAgTDQwMC4wIDcwIEw1NzAgMTIwIFoiIGZpbGw9IiM3YTVjOGUiLz48cmVjdCB4PSIyNjAiIHk9IjE0MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzMTAiIHk9IjE0MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzNjAiIHk9IjE0MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0MTAiIHk9IjE0MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0NjAiIHk9IjE0MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzODQuMCIgeT0iMjMyIiB3aWR0aD0iMzIiIGhlaWdodD0iMzgiIHJ4PSI0IiBmaWxsPSIjM2IyZjJhIiBvcGFjaXR5PSIuNzUiLz48cmVjdCB4PSIxMzYiIHk9IjIzMCIgd2lkdGg9IjgiIGhlaWdodD0iNDAiIGZpbGw9IiM2YjRmMzUiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSIyMTgiIHI9IjI2IiBmaWxsPSIjNWY4YTRiIi8+PHJlY3QgeD0iNjQ2IiB5PSIyMzAiIHdpZHRoPSI4IiBoZWlnaHQ9IjQwIiBmaWxsPSIjNmI0ZjM1Ii8+PGNpcmNsZSBjeD0iNjUwIiBjeT0iMjE4IiByPSIyNiIgZmlsbD0iIzVmOGE0YiIvPjxwYXRoIGQ9Ik00MDAgNjAgYy0xMiAtMTggLTQwIC0xMCAtNDAgMTIgYzAgMjIgNDAgNDAgNDAgNDAgYzAgMCA0MCAtMTggNDAgLTQwIGMwIC0yMiAtMjggLTMwIC00MCAtMTIgWiIgZmlsbD0iI2EyNDQ1ZSIgb3BhY2l0eT0iLjg1Ii8+PC9zdmc+", // איור דמה
+    featured: false,
+  },
+  {
+    id: "testimony-project",
+    title: "תיעוד עדויות ניצולים בבתי ספר",
+    institution: "רשת בתי ספר תיכוניים",
+    city: "תל אביב",
+    year: 2023,
+    domain: "הנצחה וזיכרון",
+    populations: ["בני נוער", "ניצולי שואה"],
+    types: ["תוכנית ופעילות"],
+    summary: "תלמידים מתעדים עדויות של ניצולים והופכים אותן לסרטים קצרים.",
+    goal: "להעביר את זיכרון השואה לדור הצעיר דרך מפגש אישי.",
+    description: "תלמידי תיכון עוברים הכשרה בתיעוד ובצילום, נפגשים עם ניצולים ומפיקים סרט עדות קצר שמוצג בטקס בית ספרי.",
+    outcome: "הופקו עשרות סרטי עדות שנשמרים בארכיון בית הספר ובמוזיאון מקומי.",
+    numbers: [
+      { value: "42", label: "עדויות מתועדות" },
+      { value: "210", label: "תלמידים משתתפים" },
+    ],
+    donors: ["zipora-adler"],
+    amount: 240000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMmIzYTU1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjOGE2Zjg2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjM2EzZjRmIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAwIDExMCkiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTIwIiByeD0iMTIiIGZpbGw9IiMxZjI0MzAiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSI2MCIgcj0iMzgiIGZpbGw9IiMzZDVhODAiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSI2MCIgcj0iMjIiIGZpbGw9IiNhOGMyZTAiLz48cmVjdCB4PSIyMDAiIHk9IjMwIiB3aWR0aD0iNTAiIGhlaWdodD0iNjAiIGZpbGw9IiMxZjI0MzAiLz48Y2lyY2xlIGN4PSI0MCIgY3k9Ii0yMCIgcj0iMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFmMjQzMCIgc3Ryb2tlLXdpZHRoPSIxMiIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9Ii0yMCIgcj0iMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFmMjQzMCIgc3Ryb2tlLXdpZHRoPSIxMiIvPjwvZz48ZyBmaWxsPSIjZjRkMDZmIj48cGF0aCBkPSJNMTIwIDEyMCBsNiAxNCAxNSAxIC0xMiA5IDQgMTUgLTEzIC04IC0xMyA4IDQgLTE1IC0xMiAtOSAxNSAtMSBaIi8+PC9nPjwvc3ZnPg==", // איור דמה
+    featured: false,
+  },
+  {
+    id: "negev-clinic",
+    title: "שדרוג מרפאה כפרית בנגב",
+    institution: "מרפאה אזורית",
+    city: "מועצה אזורית בנגב",
+    year: 2022,
+    domain: "בריאות",
+    populations: ["קהילה כללית"],
+    types: ["הצטיידות"],
+    summary: "ציוד רפואי חדש שמקצר את המרחק לטיפול עבור תושבי הנגב.",
+    goal: "לאפשר בדיקות וטיפולים במקום, בלי נסיעה ארוכה לבית החולים.",
+    description: "רכישת מכשיר אולטרסאונד, ציוד החייאה וחדר טיפולים מותאם, לצד הכשרת הצוות.",
+    outcome: "המרפאה מבצעת כיום בדיקות שבעבר חייבו נסיעה של שעה ויותר.",
+    numbers: [
+      { value: "6,000", label: "תושבים נהנים" },
+      { value: "70 דק'", label: "נסיעה שנחסכת בממוצע" },
+    ],
+    donors: ["yosef-mizrahi"],
+    amount: 1200000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZjZkZmI0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmJmMWRmIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjZDljMDhhIi8+PHJlY3QgeD0iMjYwIiB5PSIxMzAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTQwIiBmaWxsPSIjZjZmM2VlIi8+PHJlY3QgeD0iMjgwIiB5PSIxNTAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzMwIiB5PSIxNTAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzgwIiB5PSIxNTAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNDMwIiB5PSIxNTAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iNDgwIiB5PSIxNTAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgcng9IjMiIGZpbGw9IiNmZGYzZDgiIG9wYWNpdHk9Ii45Ii8+PHJlY3QgeD0iMzk0LjAiIHk9IjIzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjM4IiByeD0iNCIgZmlsbD0iIzNiMmYyYSIgb3BhY2l0eT0iLjc1Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzgwIDkwKSIgZmlsbD0iI2MwMzkyYiI+PHJlY3QgeD0iMTQiIHdpZHRoPSIxMiIgaGVpZ2h0PSI0MCIvPjxyZWN0IHk9IjE0IiB3aWR0aD0iNDAiIGhlaWdodD0iMTIiLz48L2c+PHBhdGggZD0iTTYwMCAyNzAgcTIwIC02MCA0MCAwIFogTTgwIDI3MCBxMTUgLTQ1IDMwIDAgWiIgZmlsbD0iIzdjOWE1YSIvPjwvc3ZnPg==", // איור דמה
+    featured: true,
+  },
+  {
+    id: "seniors-club-beer-sheva",
+    title: "מועדון חברתי לאזרחים ותיקים",
+    institution: "מועדון 'גיל הזהב'",
+    city: "באר שבע",
+    year: 2020,
+    domain: "אזרחים ותיקים",
+    populations: ["אזרחים ותיקים"],
+    types: ["בינוי ושיפוץ", "הצטיידות"],
+    summary: "מועדון משופץ עם פעילות יומית, הרצאות וחוגים.",
+    goal: "לחזק את הקשר החברתי ואת הבריאות של אזרחים ותיקים בשכונה.",
+    description: "שיפוץ המבנה, מיזוג, ריהוט נוח, ציוד לחוגי התעמלות ומחשבים לחוג מחשבים.",
+    outcome: "המועדון חזר לפעול לאחר שיפוץ ומספר החברים בו כמעט הוכפל.",
+    numbers: [
+      { value: "160", label: "חברי מועדון" },
+      { value: "9", label: "חוגים שבועיים" },
+    ],
+    donors: ["yosef-mizrahi"],
+    amount: 210000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZjNkOWI4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjhlZmUwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjY2RiOThmIi8+PHJlY3QgeD0iMjMwIiB5PSIxMzAiIHdpZHRoPSIzNDAiIGhlaWdodD0iMTQwIiBmaWxsPSIjZTJjZmFlIi8+PHBhdGggZD0iTTIyMCAxMzAgTDQwMC4wIDgwIEw1ODAgMTMwIFoiIGZpbGw9IiM3YTVjOGUiLz48cmVjdCB4PSIyNTAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzMDAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzNTAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0MDAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0NTAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI1MDAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzODQuMCIgeT0iMjMyIiB3aWR0aD0iMzIiIGhlaWdodD0iMzgiIHJ4PSI0IiBmaWxsPSIjM2IyZjJhIiBvcGFjaXR5PSIuNzUiLz48Y2lyY2xlIGN4PSIxNjAiIGN5PSIyMDgiIHI9IjEwIiBmaWxsPSIjZTJiNDhmIi8+PHJlY3QgeD0iMTQ5IiB5PSIyMjAiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0MCIgcng9IjkiIGZpbGw9IiM3YTVjOGUiLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSIyMDgiIHI9IjEwIiBmaWxsPSIjZTJiNDhmIi8+PHJlY3QgeD0iMTg5IiB5PSIyMjAiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0MCIgcng9IjkiIGZpbGw9IiMzZDVhODAiLz48cmVjdCB4PSI2MDAiIHk9IjIyMCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjgiIGZpbGw9IiM2YjRmMzUiLz48cGF0aCBkPSJNNjEwIDIyOCB2NDIgTTY2MCAyMjggdjQyIiBzdHJva2U9IiM2YjRmMzUiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==", // איור דמה
+    featured: false,
+  },
+  {
+    id: "music-center-netanya",
+    title: "מרכז מוזיקה קהילתי",
+    institution: "הקונסרבטוריון העירוני",
+    city: "נתניה",
+    year: 2021,
+    domain: "תרבות וקהילה",
+    populations: ["ילדים", "בני נוער", "קהילה כללית"],
+    types: ["הצטיידות", "מלגות"],
+    summary: "כלי נגינה ומלגות שמאפשרים לכל ילד ללמוד מוזיקה.",
+    goal: "לאפשר לימודי מוזיקה גם למשפחות שאינן יכולות לממן אותם.",
+    description: "רכישת כלי נגינה להשאלה, הקמת חדר חזרות אקוסטי ומלגות לימוד לתלמידים.",
+    outcome: "עשרות ילדים קיבלו כלי נגינה ומלגה, והתזמורת הקהילתית הופיעה בטקסי העיר.",
+    numbers: [
+      { value: "60", label: "כלי נגינה להשאלה" },
+      { value: "75", label: "מלגות לימוד" },
+      { value: "1", label: "תזמורת קהילתית" },
+    ],
+    donors: ["hana-gold"],
+    amount: 300000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjY2ZlMmYwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjRlY2RjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjYTljMDhhIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjUwIDEzMCkiPjxwYXRoIGQ9Ik0wIDE0MCBWNDAgUTAgMCA2MCAwIEgyMDAgUTMwMCAwIDMwMCA2MCBWMTQwIFoiIGZpbGw9IiMxZjI0MzAiLz48cmVjdCB5PSIxMTAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAiIGZpbGw9IiNmNGVmZTYiLz48cmVjdCB4PSIxMiIgeT0iMTEwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTgiIGZpbGw9IiMxZjI0MzAiLz48cmVjdCB4PSIzNiIgeT0iMTEwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTgiIGZpbGw9IiMxZjI0MzAiLz48cmVjdCB4PSI2MCIgeT0iMTEwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTgiIGZpbGw9IiMxZjI0MzAiLz48cmVjdCB4PSI4NCIgeT0iMTEwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTgiIGZpbGw9IiMxZjI0MzAiLz48cmVjdCB4PSIxMDgiIHk9IjExMCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE4IiBmaWxsPSIjMWYyNDMwIi8+PHJlY3QgeD0iMTMyIiB5PSIxMTAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxOCIgZmlsbD0iIzFmMjQzMCIvPjxyZWN0IHg9IjE1NiIgeT0iMTEwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTgiIGZpbGw9IiMxZjI0MzAiLz48cmVjdCB4PSIxODAiIHk9IjExMCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE4IiBmaWxsPSIjMWYyNDMwIi8+PHJlY3QgeD0iMjA0IiB5PSIxMTAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxOCIgZmlsbD0iIzFmMjQzMCIvPjxyZWN0IHg9IjIyOCIgeT0iMTEwIiB3aWR0aD0iMTIiIGhlaWdodD0iMTgiIGZpbGw9IiMxZjI0MzAiLz48cmVjdCB4PSIyNTIiIHk9IjExMCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE4IiBmaWxsPSIjMWYyNDMwIi8+PHJlY3QgeD0iMjc2IiB5PSIxMTAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxOCIgZmlsbD0iIzFmMjQzMCIvPjwvZz48ZyBmaWxsPSIjYTI0NDVlIj48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMjAiIHI9IjEyIi8+PHJlY3QgeD0iMTU5IiB5PSI2MCIgd2lkdGg9IjUiIGhlaWdodD0iNjIiLz48Y2lyY2xlIGN4PSI2NDAiIGN5PSIxMDAiIHI9IjEyIi8+PHJlY3QgeD0iNjQ5IiB5PSI0MCIgd2lkdGg9IjUiIGhlaWdodD0iNjIiLz48L2c+PC9zdmc+", // איור דמה
+    featured: false,
+  },
+  {
+    id: "youth-at-risk-north",
+    title: "בית חם לנוער בסיכון",
+    institution: "עמותת 'מגדלור'",
+    city: "קריית שמונה",
+    year: 2023,
+    domain: "ילדים ונוער",
+    populations: ["בני נוער"],
+    types: ["תוכנית ופעילות"],
+    summary: "מועדון ערב שמעניק לבני נוער מקום בטוח, ליווי ותעסוקה.",
+    goal: "למנוע נשירה ולתת לבני נוער בסיכון כתובת קבועה ומבוגר משמעותי.",
+    description: "הקמת מועדון נוער פעיל בשעות הערב, כולל מטבח, חדר לימוד ותוכנית הכשרה תעסוקתית.",
+    outcome: "המועדון פועל ארבעה ערבים בשבוע, ורוב המשתתפים השלימו את שנת הלימודים.",
+    numbers: [
+      { value: "55", label: "בני נוער פעילים" },
+      { value: "90%", label: "השלימו את שנת הלימודים" },
+      { value: "3", label: "שנות פעילות" },
+    ],
+    donors: ["david-shapira"],
+    amount: 380000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMmIzYTU1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjOGE2Zjg2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjNGE1YTQ2Ii8+PHJlY3QgeD0iMjYwIiB5PSIxMzAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTQwIiBmaWxsPSIjYzA3YTJjIi8+PHBhdGggZD0iTTI1MCAxMzAgTDQwMC4wIDgwIEw1NTAgMTMwIFoiIGZpbGw9IiM1YzNiMWUiLz48cmVjdCB4PSIyODAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzMzAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzODAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0MzAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSI0ODAiIHk9IjE1MCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjI4IiByeD0iMyIgZmlsbD0iI2ZkZjNkOCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIzODQuMCIgeT0iMjMyIiB3aWR0aD0iMzIiIGhlaWdodD0iMzgiIHJ4PSI0IiBmaWxsPSIjM2IyZjJhIiBvcGFjaXR5PSIuNzUiLz48cGF0aCBkPSJNODAgMjcwIEwyMDAgMTUwIEwzMjAgMjcwIFogTTUyMCAyNzAgTDY2MCAxMjAgTDgwMCAyNzAgWiIgZmlsbD0iIzNkNGEzYSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI1NjAiIGN5PSIyMDgiIHI9IjEwIiBmaWxsPSIjZTJiNDhmIi8+PHJlY3QgeD0iNTQ5IiB5PSIyMjAiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0MCIgcng9IjkiIGZpbGw9IiMzZDVhODAiLz48Y2lyY2xlIGN4PSI2MDAiIGN5PSIyMDgiIHI9IjEwIiBmaWxsPSIjZTJiNDhmIi8+PHJlY3QgeD0iNTg5IiB5PSIyMjAiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0MCIgcng9IjkiIGZpbGw9IiNhMjQ0NWUiLz48Y2lyY2xlIGN4PSI2NDAiIGN5PSIyMDgiIHI9IjEwIiBmaWxsPSIjZTJiNDhmIi8+PHJlY3QgeD0iNjI5IiB5PSIyMjAiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0MCIgcng9IjkiIGZpbGw9IiMyZjdkNzgiLz48L3N2Zz4=", // איור דמה
+    featured: false,
+  },
+  {
+    id: "community-garden",
+    title: "גינה קהילתית בין-דורית",
+    institution: "מנהל קהילתי שכונתי",
+    city: "חיפה",
+    year: 2024,
+    domain: "פיתוח קהילתי",
+    populations: ["קהילה כללית", "אזרחים ותיקים", "ילדים"],
+    types: ["בינוי ושיפוץ"],
+    summary: "גינה משותפת שבה סבים ונכדים מגדלים יחד.",
+    goal: "לחבר בין דורות ולחזק את הקהילה השכונתית.",
+    description: "הכשרת שטח ציבורי נטוש לגינה עם ערוגות מוגבהות נגישות, מערכת השקיה ופינת ישיבה.",
+    outcome: "הגינה מטופחת על ידי תושבים מכל הגילים ומארחת פעילויות של גני הילדים בשכונה.",
+    numbers: [
+      { value: "40", label: "ערוגות" },
+      { value: "3", label: "דורות שותפים" },
+    ],
+    donors: ["rachel-levinson", "hana-gold"],
+    amount: 150000,
+    image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjY2ZlMmYwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjRlY2RjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIzNTAiIGZpbGw9InVybCgjcykiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSI4MCIgcj0iMzgiIGZpbGw9IiNmZmY2ZGMiIG9wYWNpdHk9Ii44NSIvPjxwYXRoIGQ9Ik0wIDI3MCBRMjAwIDI0MCA0MDAgMjYyIFQ4MDAgMjUwIEw4MDAgMzUwIEwwIDM1MCBaIiBmaWxsPSIjOWZiZjdhIi8+PHJlY3QgeD0iMTEwIiB5PSIyMjUiIHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIHJ4PSI2IiBmaWxsPSIjOGE1YTNjIi8+PGcgZmlsbD0iIzVmOGE0YiI+PGNpcmNsZSBjeD0iMTI1IiBjeT0iMjIwIiByPSIxMSIvPjxjaXJjbGUgY3g9IjE0NyIgY3k9IjIyMCIgcj0iMTEiLz48Y2lyY2xlIGN4PSIxNjkiIGN5PSIyMjAiIHI9IjExIi8+PGNpcmNsZSBjeD0iMTkxIiBjeT0iMjIwIiByPSIxMSIvPjxjaXJjbGUgY3g9IjIxMyIgY3k9IjIyMCIgcj0iMTEiLz48L2c+PHJlY3QgeD0iMjYwIiB5PSIyMjUiIHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIHJ4PSI2IiBmaWxsPSIjOGE1YTNjIi8+PGcgZmlsbD0iIzVmOGE0YiI+PGNpcmNsZSBjeD0iMjc1IiBjeT0iMjIwIiByPSIxMSIvPjxjaXJjbGUgY3g9IjI5NyIgY3k9IjIyMCIgcj0iMTEiLz48Y2lyY2xlIGN4PSIzMTkiIGN5PSIyMjAiIHI9IjExIi8+PGNpcmNsZSBjeD0iMzQxIiBjeT0iMjIwIiByPSIxMSIvPjxjaXJjbGUgY3g9IjM2MyIgY3k9IjIyMCIgcj0iMTEiLz48L2c+PHJlY3QgeD0iNDEwIiB5PSIyMjUiIHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIHJ4PSI2IiBmaWxsPSIjOGE1YTNjIi8+PGcgZmlsbD0iIzVmOGE0YiI+PGNpcmNsZSBjeD0iNDI1IiBjeT0iMjIwIiByPSIxMSIvPjxjaXJjbGUgY3g9IjQ0NyIgY3k9IjIyMCIgcj0iMTEiLz48Y2lyY2xlIGN4PSI0NjkiIGN5PSIyMjAiIHI9IjExIi8+PGNpcmNsZSBjeD0iNDkxIiBjeT0iMjIwIiByPSIxMSIvPjxjaXJjbGUgY3g9IjUxMyIgY3k9IjIyMCIgcj0iMTEiLz48L2c+PHJlY3QgeD0iNTYwIiB5PSIyMjUiIHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIHJ4PSI2IiBmaWxsPSIjOGE1YTNjIi8+PGcgZmlsbD0iIzVmOGE0YiI+PGNpcmNsZSBjeD0iNTc1IiBjeT0iMjIwIiByPSIxMSIvPjxjaXJjbGUgY3g9IjU5NyIgY3k9IjIyMCIgcj0iMTEiLz48Y2lyY2xlIGN4PSI2MTkiIGN5PSIyMjAiIHI9IjExIi8+PGNpcmNsZSBjeD0iNjQxIiBjeT0iMjIwIiByPSIxMSIvPjxjaXJjbGUgY3g9IjY2MyIgY3k9IjIyMCIgcj0iMTEiLz48L2c+PGNpcmNsZSBjeD0iMzQwIiBjeT0iMjAxLjgiIHI9IjExLjAiIGZpbGw9IiNlMmI0OGYiLz48cmVjdCB4PSIzMjcuOSIgeT0iMjE1LjAiIHdpZHRoPSIyNC4yMDAwMDAwMDAwMDAwMDMiIGhlaWdodD0iNDQuMCIgcng9IjkuOSIgZmlsbD0iIzdhNWM4ZSIvPjxjaXJjbGUgY3g9IjM4MCIgY3k9IjIyNi42IiByPSI3LjAiIGZpbGw9IiNlMmI0OGYiLz48cmVjdCB4PSIzNzIuMyIgeT0iMjM1LjAiIHdpZHRoPSIxNS4zOTk5OTk5OTk5OTk5OTkiIGhlaWdodD0iMjguMCIgcng9IjYuMyIgZmlsbD0iI2MwN2EyYyIvPjxyZWN0IHg9IjcxNS4yIiB5PSIyMjIuMCIgd2lkdGg9IjkuNiIgaGVpZ2h0PSI0OC4wIiBmaWxsPSIjNmI0ZjM1Ii8+PGNpcmNsZSBjeD0iNzIwIiBjeT0iMjA3LjYiIHI9IjMxLjIiIGZpbGw9IiM1ZjhhNGIiLz48L3N2Zz4=", // איור דמה
+    featured: false,
+  },
+];
+
+</script>
+  <script>
+(() => {
+  const main = document.getElementById("main");
+  const $ = (sel, root = document) => root.querySelector(sel);
+
+  // ---------- data helpers ----------
+  const personById = Object.fromEntries(PEOPLE.map((p) => [p.id, p]));
+  const projectById = Object.fromEntries(PROJECTS.map((p) => [p.id, p]));
+  const namedPeople = PEOPLE.filter((p) => !p.anonymous);
+  const projectsOf = (personId) => PROJECTS.filter((p) => p.donors.includes(personId)).sort((a, b) => b.year - a.year);
+  const namedDonors = (project) => project.donors.map((id) => personById[id]).filter((p) => p && !p.anonymous);
+  const hasAnon = (project) => project.donors.some((id) => personById[id]?.anonymous);
+  const uniq = (arr) => [...new Set(arr)];
+  const years = uniq(PROJECTS.map((p) => p.year)).sort((a, b) => b - a);
+  const institutions = uniq(PROJECTS.map((p) => p.institution)).sort((a, b) => a.localeCompare(b, "he"));
+  const projectCities = uniq(PROJECTS.map((p) => p.city)).sort((a, b) => a.localeCompare(b, "he"));
+  const peopleCities = uniq(namedPeople.map((p) => p.city).filter(Boolean)).sort((a, b) => a.localeCompare(b, "he"));
+  const color = (domain) => DOMAINS[domain] || "#555";
+
+  // חיפוש טקסט סלחני: מתעלם מגרשיים, ז"ל, רווחים כפולים ואותיות גדולות/קטנות
+  const norm = (s) => String(s ?? "").replace(/ז["״]ל/g, "").replace(/["'״׳\-–]/g, " ").replace(/\s+/g, " ").trim().toLowerCase();
+  const textMatch = (q, ...fields) => {
+    const words = norm(q).split(" ").filter(Boolean);
+    const hay = norm(fields.flat().join(" "));
+    return words.every((w) => hay.includes(w));
+  };
+  const personText = (p) => [p.name, p.city, p.bio, p.years];
+  const projectFields = (p) => [p.title, p.institution, p.city, p.summary, p.domain, p.populations, p.types || []];
+  const projectText = (p) => [projectFields(p), namedDonors(p).map((d) => d.name)];
+
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const fmtMoney = (n) => "₪" + Number(n).toLocaleString("he-IL");
+  const fmtMoneyShort = (n) => n >= 1e6 ? `₪${(n / 1e6).toLocaleString("he-IL", { maximumFractionDigits: 1 })} מיליון` : fmtMoney(n);
+  const plainName = (name) => name.replace(/\s*ז"ל\s*$/, "");
+  const initials = (name) => plainName(name).split(/\s+/).slice(0, 2).map((w) => w[0]).join("");
+  // ראשי תיבות של חבר ועדה בלי התואר: "ד״ר לאה נס" -> "לנ"
+  const memberInitials = (name) => initials(name.replace(/,.*$/, "").replace(/^(השופט\s*\(בדימוס\)|השופטת\s*\(בדימוס\)|מר|גב'|ד"ר|פרופ'|עו"ד|רו"ח)\s+/, ""));
+  const memberCard = (m, extraClass = "") => `
+    <div class="member-card${extraClass}">
+      <div class="portrait">${m.photo ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}">` : `<span aria-hidden="true">${esc(memberInitials(m.name))}</span>`}</div>
+      <h3>${esc(m.name)}</h3>
+      <div class="role">${esc(m.role)}</div>
+      ${m.bio ? `<p>${esc(m.bio)}</p>` : ""}
+    </div>`;
+  const projectsWord = (n) => (n === 1 ? "פרויקט אחד" : `${n} פרויקטים`);
+
+  const portrait = (person, size = "") => `
+    <div class="portrait ${size}">
+      ${person.photo ? `<img src="${esc(person.photo)}" alt="${esc(person.name)}">` : `<span aria-hidden="true">${esc(initials(person.name))}</span>`}
+    </div>`;
+
+  // ---------- קישורים חיצוניים (כפתור "בקרוב" כל עוד אין קישור ב-CONFIG.links) ----------
+  const linkBtn = (key, text, cls = "btn-gold") => {
+    const url = CONFIG.links?.[key];
+    return url
+      ? `<a class="btn ${cls}" href="${esc(url)}" target="_blank" rel="noopener">${text}</a>`
+      : `<button type="button" class="btn ${cls}" data-placeholder>${text}</button>`;
+  };
+  const sampleBadge = `<span class="sample-badge" title="יש להחליף בתוכן הסופי">תוכן לדוגמה</span>`;
+
+  // ---------- נר זיכרון: מי מהמונצחים נפטר ביום הזה בשנה ----------
+  const parseDate = (s) => { const [y, m, d] = String(s).split("-").map(Number); return new Date(y, m - 1, d); };
+  const hebDayMonth = new Intl.DateTimeFormat("he-u-ca-hebrew", { day: "numeric", month: "long" });
+  // תאריך עברי באותיות: "י״ז בחשוון תשפ״ז" (Intl נותן את היום והשנה כמספרים, ממירים לגימטריה)
+  const gematria = (n) => {
+    const letters = [[400, "ת"], [300, "ש"], [200, "ר"], [100, "ק"], [90, "צ"], [80, "פ"], [70, "ע"], [60, "ס"], [50, "נ"],
+      [40, "מ"], [30, "ל"], [20, "כ"], [10, "י"], [9, "ט"], [8, "ח"], [7, "ז"], [6, "ו"], [5, "ה"], [4, "ד"], [3, "ג"], [2, "ב"], [1, "א"]];
+    let s = "";
+    for (const [v, l] of letters) while (n >= v) { s += l; n -= v; }
+    s = s.replace(/יה$/, "טו").replace(/יו$/, "טז"); // 15, 16 נכתבים ט״ו, ט״ז
+    return s.length === 1 ? s + "׳" : s.slice(0, -1) + "״" + s.slice(-1);
+  };
+  const hebParts = new Intl.DateTimeFormat("he-u-ca-hebrew", { day: "numeric", month: "long", year: "numeric" });
+  const hebFull = {
+    format: (d) => {
+      const p = Object.fromEntries(hebParts.formatToParts(d).map((x) => [x.type, x.value]));
+      return `${gematria(Number(p.day))} ב${p.month} ${gematria(Number(p.year) % 1000)}`;
+    },
+  };
+  const gregFull = new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "long", year: "numeric" });
+  const isAnniversary = (person, today) => {
+    if (!person.deathDate) return false;
+    const d = parseDate(person.deathDate);
+    return CONFIG.memorialCalendar === "hebrew"
+      ? hebDayMonth.format(d) === hebDayMonth.format(today)
+      : d.getDate() === today.getDate() && d.getMonth() === today.getMonth();
+  };
+  // ?today=MM-DD בכתובת מאפשר לבדוק איך הנר נראה בתאריך אחר
+  const todayFrom = (params) => {
+    const t = params?.get("today");
+    if (t && /^\d{2}-\d{2}$/.test(t)) { const [m, d] = t.split("-").map(Number); return new Date(new Date().getFullYear(), m - 1, d); }
+    return new Date();
+  };
+  const yearsSince = (person, today) => today.getFullYear() - parseDate(person.deathDate).getFullYear();
+  const deathLine = (person) => person.deathDate
+    ? `${gregFull.format(parseDate(person.deathDate))} · ${hebFull.format(parseDate(person.deathDate))}` : "";
+  const candleSvg = `
+    <svg class="candle" viewBox="0 0 60 120" aria-hidden="true">
+      <ellipse class="glow" cx="30" cy="30" rx="26" ry="30"/>
+      <path class="flame" d="M30 8 C38 22 40 30 36 38 A7 7 0 0 1 24 38 C20 30 22 22 30 8 Z"/>
+      <path class="flame-core" d="M30 24 C33 30 33 34 31 37 A3 3 0 0 1 29 37 C27 34 27 30 30 24 Z"/>
+      <rect x="29" y="38" width="2" height="8" fill="#3b2f2a"/>
+      <rect x="18" y="46" width="24" height="64" rx="3" fill="#f4efe6"/>
+      <rect x="18" y="46" width="24" height="64" rx="3" fill="url(#wax)" opacity=".5"/>
+      <defs><linearGradient id="wax" x1="0" x2="1"><stop offset="0" stop-color="#d9cfbf"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#d9cfbf"/></linearGradient></defs>
+    </svg>`;
+  const memorialBand = (today) => {
+    const list = namedPeople.filter((p) => isAnniversary(p, today));
+    if (!list.length) return "";
+    return `
+      <section class="yahrzeit" aria-label="נר זיכרון">
+        <div class="wrap yahrzeit-inner">
+          ${candleSvg}
+          <div>
+            <div class="eyebrow">נר זיכרון · ${esc(hebFull.format(today))}</div>
+            <h2>היום אנו זוכרים</h2>
+            <div class="yahrzeit-people">
+              ${list.map((p) => `
+                <a class="yahrzeit-person" href="#/person/${p.id}">
+                  ${portrait(p)}
+                  <span><b>${esc(p.name)}</b>
+                  <small>${yearsSince(p, today) > 0 ? `${yearsSince(p, today)} שנים לפטירתו/ה · ` : ""}${projectsWord(projectsOf(p.id).length)} לזכרו/ה</small></span>
+                </a>`).join("")}
+            </div>
+          </div>
+        </div>
+      </section>`;
+  };
+
+  // ---------- התפלגות לפי מדינות ----------
+  const countryBlock = () => {
+    const rows = [...COUNTRY_STATS].sort((a, b) => b.count - a.count);
+    const total = rows.reduce((s, r) => s + r.count, 0);
+    const max = rows[0]?.count || 1;
+    return `
+      <div class="countries">
+        ${rows.map((r) => `
+          <div class="country-row">
+            <span class="c-name">${esc(r.country)}</span>
+            <span class="c-bar"><span style="width:${Math.max(1.5, (r.count / max) * 100)}%"></span></span>
+            <span class="c-num"><b>${r.count}</b> <small>(${Math.round((r.count / total) * 100)}%)</small>${CONFIG.showAmounts ? ` · ${fmtMoneyShort(r.amount)}` : ""}</span>
+          </div>`).join("")}
+      </div>
+      <p class="note">מבוסס על ${total} עיזבונות שבנוסח ההנצחה שלהם צוינה מדינת המוריש/ה (דוח יתרת עיזבונות).</p>`;
+  };
+
+  const donateBlock = () => `
+    <div class="callout donate">
+      <div>
+        <h2>גם אתם יכולים להשאיר חותם</h2>
+        <p>הורשה או תרומה לטובת הציבור ממשיכה לפעול גם אחרי לכתנו: כיתות לימוד, מרכזים קהילתיים ושירותים שמשנים חיים. כל תרומה, גדולה כקטנה, הופכת לעשייה שנושאת את שמכם.</p>
+      </div>
+      ${linkBtn("donate", "רוצים להצטרף לעשייה מבורכת וחשובה?")}
+    </div>`;
+
+  // ---------- שקיפות ובקרה: מסלול הכסף מהעיזבון ועד לפרויקט ----------
+  const CONTROL_STEPS = [
+    { t: "בדיקה מקיפה של הגוף המבקש",
+      d: "כל בקשה עוברת בדיקה טכנית של המסמכים ובדיקה פיננסית יסודית של הדוחות הכספיים של העמותה או המוסד: היקף הפעילות, עודפים או גירעונות מצטברים, שיעור הוצאות ההנהלה והכלליות ותוקף אישור הניהול התקין. רק גוף יציב, שקוף ומתנהל כשורה יכול להמשיך לשלב הדיון." },
+    { t: "התאמה לרצון המוריש",
+      d: "הוועדה בוחנת שהפרויקט מתאים לייעוד שקבע המוריש בצוואתו או לנושאי התמיכה העיקריים, ושהוא מביא תועלת ממשית לציבור. כך כל שקל נשאר נאמן לכוונה שמאחורי הנתינה." },
+    { t: "מימון תואם: המוסד שותף",
+      d: "כספי העיזבון אינם מממנים את הפרויקט לבדם. המוסד נדרש להשתתף במימון ממקורותיו, במימון תואם להקצבה. השותפות הזו מבטיחה שהמוסד מחויב לפרויקט, שהפרויקט אכן נחוץ לו, וכי כספי הציבור מנוצלים בתבונה ומגיעים רחוק יותר." },
+    { t: "קודם עשייה, אחר כך כסף",
+      d: "הכסף לא מועבר מראש. המוסד מקים ומבצע את הפרויקט בפועל, בהתאם להחלטת הוועדה: בונה, משפץ, מצטייד או מפעיל את התוכנית. רק לאחר שהפרויקט הושלם הוא מגיש את החשבוניות והדיווחים." },
+    { t: "בקרה של המשרד הממשלתי",
+      d: "רכז/ת העיזבונות במשרד הממשלתי הרלוונטי מלווה את הפרויקט לאורך כל הדרך, וחשבות המשרד בודקת את החשבוניות, את הדיווחים ואת ביצוע ההנצחה. הבדיקה מוודאת שהפרויקט בוצע במלואו ובדיוק כפי שהוועדה החליטה." },
+    { t: "העברת הכספים למוסד",
+      d: "רק לאחר שכל הבדיקות הושלמו והפרויקט נמצא תקין, כספי התמיכה מועברים למוסד. מוסד שלא עמד בתנאים, כולל ביצוע ההנצחה, לא יקבל את ההקצבה." },
+  ];
+  const controlBlock = () => `
+    <div class="control">
+      <div class="control-intro">
+        <h2>שקיפות ובקרה: מסלול הכסף</h2>
+        <p>כספי העיזבונות הם נתינה אחרונה של אדם, ולכן הם מטופלים באחריות ובזהירות המרביות. הדרך מהחלטת הוועדה ועד להעברת הכסף עוברת כמה שכבות של בדיקה ובקרה, כדי לוודא שהכסף מגיע לגופים ראויים, משמש בדיוק למטרה שנקבעה ומשאיר אחריו עשייה ממשית.</p>
+      </div>
+      <ol class="control-steps">
+        ${CONTROL_STEPS.map((s) => `<li><h3>${s.t}</h3><p>${s.d}</p></li>`).join("")}
+      </ol>
+      <p class="control-outro">בזכות התהליך הזה, כל פרויקט שמופיע באתר הוא פרויקט שבוצע בפועל, נבדק ואושר. כך רצון המוריש מתממש במלואו, והזיכרון שלו הופך לעשייה של ממש.</p>
+    </div>`;
+
+  // ---------- components ----------
+  const dedicationLine = (project) => {
+    const names = namedDonors(project);
+    if (names.length) {
+      return `<div class="dedication"><span>לזכר:</span> ${names.map((p) => esc(plainName(p.name))).join(", ")}${hasAnon(project) ? " ותורמים נוספים" : ""}</div>`;
+    }
+    return `<div class="dedication"><span>בזכות</span> עיזבונו של תורם שביקש להישאר בעילום שם</div>`;
+  };
+
+  const projectCard = (p) => `
+    <a class="project-card" href="#/project/${p.id}" style="--c:${color(p.domain)}">
+      <div class="cover">
+        ${p.image ? `<img src="${esc(p.image)}" alt="">` : ""}
+        ${p.featured ? `<span class="featured-badge">פרויקט דגל</span>` : ""}
+        <span class="chip">${esc(p.domain)}</span>
+      </div>
+      <div class="body">
+        <div class="inst">${esc(p.institution)} · ${esc(p.city)} · ${p.year}</div>
+        <h3>${esc(p.title)}</h3>
+        <p class="summary">${esc(p.summary)}</p>
+        ${dedicationLine(p)}
+      </div>
+    </a>`;
+
+  const personCard = (person) => {
+    const n = projectsOf(person.id).length;
+    return `
+      <a class="person-card" href="#/person/${person.id}">
+        ${portrait(person)}
+        <h3>${esc(person.name)}</h3>
+        <div class="meta">${[person.years, person.city].filter(Boolean).map(esc).join(" · ")}</div>
+        <span class="count">${projectsWord(n)} לזכרו/ה</span>
+      </a>`;
+  };
+
+  const PROCESS = [
+    { t: "הצוואה", d: "אדם בוחר להוריש את רכושו, כולו או חלקו, למדינת ישראל – לעיתים עם בקשה להנצחה או לייעוד מסוים." },
+    { t: "ניהול העיזבון", d: "המדינה מאתרת את נכסי העיזבון, מממשת אותם ושומרת את הכספים בקרן ייעודית." },
+    { t: "בקשות המוסדות", d: "מוסדות ציבור ועמותות מגישים בקשות לתמיכה בפרויקטים לטובת הציבור." },
+    { t: "ההקצאה", d: "ועדה ציבורית בוחנת את הבקשות ומקצה את הכספים בהתאם לרצון המוריש ולצורכי הציבור." },
+    { t: "העשייה וההנצחה", d: "הפרויקט יוצא לפועל ונושא את שמו של המוריש – וכך זכרו ממשיך לפעול בקהילה." },
+  ];
+  const processBlock = () => `<div class="process">${PROCESS.map((s) => `<div class="step"><h3>${s.t}</h3><p>${s.d}</p></div>`).join("")}</div>`;
+
+  // ---------- pages ----------
+  function home(params) {
+    const totalAmount = PROJECTS.reduce((s, p) => s + (p.amount || 0), 0);
+    const stats = [
+      [PEOPLE.length, "מורישים ומונצחים"],
+      [PROJECTS.length, "פרויקטים"],
+      [institutions.length, "מוסדות"],
+      [Object.keys(DOMAINS).filter((d) => PROJECTS.some((p) => p.domain === d)).length, "תחומי עשייה"],
+    ];
+    if (CONFIG.showAmounts) stats.push([fmtMoneyShort(totalAmount), "הוקצו מעיזבונות"]);
+
+    const featured = PROJECTS.filter((p) => p.featured);
+    const someone = [...namedPeople].sort(() => Math.random() - 0.5).slice(0, 4);
+
+    return `
+      <section class="hero">
+        <div class="wrap">
+          <h1>זוכרים. מנציחים. ממשיכים את העשייה.</h1>
+          <p class="lead">אתר זה מוקדש לאנשים שבחרו להוריש את רכושם לטובת הציבור בישראל.
+          כאן תוכלו להכיר אותם – ולראות כיצד הנתינה שלהם הפכה לכיתות לימוד, למרכזים קהילתיים, למבנים נגישים ולשירותים שמשנים חיים.</p>
+          <form class="hero-search" id="heroSearch" role="search">
+            <input name="q" type="search" placeholder="חפשו לפי שם המונצח, פרויקט, מוסד או עיר…" aria-label="חיפוש באתר" autocomplete="off">
+            <button class="btn btn-gold" type="submit">חיפוש</button>
+          </form>
+          <div class="hero-actions">
+            <a class="btn btn-ghost" href="#/people">הכירו את המונצחים</a>
+            <a class="btn btn-ghost" href="#/about">איך עיזבון הופך לעשייה?</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap"><div class="stats">${stats.map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("")}</div></div>
+
+      ${memorialBand(todayFrom(params))}
+
+      <section class="block">
+        <div class="wrap">
+          <div class="section-head">
+            <div><h2>האנשים שמאחורי העשייה</h2><p>כל פרויקט באתר נולד מצוואה של אדם אחד. הכירו את סיפוריהם ואת מה שהותירו אחריהם.</p></div>
+            <a class="more" href="#/people">לכל המונצחים ←</a>
+          </div>
+          <div class="people-grid">${someone.map(personCard).join("")}</div>
+        </div>
+      </section>
+
+      <section class="block alt">
+        <div class="wrap">
+          <div class="section-head">
+            <div><h2>מהעיזבון – לפרויקט</h2><p>איך רכושו של אדם הופך לפרויקט שמשרת את הציבור? בחמישה שלבים:</p></div>
+            <a class="more" href="#/about">עוד על התהליך ←</a>
+          </div>
+          ${processBlock()}
+        </div>
+      </section>
+
+      ${featured.length ? `
+      <section class="block">
+        <div class="wrap">
+          <div class="section-head">
+            <div><h2>פרויקטי דגל</h2><p>פרויקטים בהיקף משמעותי, שהשפעתם חורגת ממוסד אחד ומגיעה לקהילות שלמות.</p></div>
+            <a class="more" href="#/projects">לכל הפרויקטים ←</a>
+          </div>
+          <div class="projects-grid">${featured.map(projectCard).join("")}</div>
+        </div>
+      </section>` : ""}
+
+      <section class="block alt">
+        <div class="wrap">
+          <div class="section-head"><div><h2>למען מי?</h2><p>מאחורי כל פרויקט עומדים אנשים שנהנים ממנו כל יום.</p></div></div>
+          <div class="pop-grid">
+            ${POPULATIONS.map((pop) => {
+              const n = PROJECTS.filter((p) => p.populations.includes(pop.name)).length;
+              return `<a class="pop" href="#/projects?pop=${encodeURIComponent(pop.name)}"><h3>למען ${esc(pop.name)}</h3><p>${esc(pop.text)}</p><small>${projectsWord(n)} ←</small></a>`;
+            }).join("")}
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="wrap">
+          <div class="section-head">
+            <div><h2>מכל קצוות העולם</h2><p>מורישים מארצות רבות בחרו להשאיר את רכושם למדינת ישראל. כך מתחלקים העיזבונות לפי ארץ המוריש:</p></div>
+            <a class="more" href="#/about">עוד על האתר ←</a>
+          </div>
+          ${countryBlock()}
+        </div>
+      </section>
+
+      <section class="block alt">
+        <div class="wrap two-col">
+          <div class="info-card">
+            <h2>מוסד או עמותה?</h2>
+            <p>מוסדות ציבור, עמותות ומשרדי ממשלה יכולים להגיש בקשה לתמיכה מכספי העיזבונות במסגרת הקול הקורא של הוועדה.</p>
+            <div class="btn-row">
+              ${linkBtn("yaela", "כניסה למערכת יעל\"ה")}
+              <a class="btn btn-line" href="#/apply">מי זכאי להגיש?</a>
+            </div>
+          </div>
+          <div class="info-card">
+            <h2>נוהל הנצחה</h2>
+            <p>מוסד שקיבל הקצבה מעיזבון שנקבעה בו חובת הנצחה מציב שלט הנצחה לפי הנחיות הוועדה ומעלה את תמונותיו למערכת יעל"ה.</p>
+            <div class="btn-row"><a class="btn btn-line" href="#/memorial-guidelines">להנחיות המלאות</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block"><div class="wrap">${donateBlock()}</div></section>
+
+      <div class="quote-band"><div class="wrap">
+        <p>"מהזיכרון – לעשייה. מהעשייה – להשפעה."</p>
+        <div class="steps-line">זוכרים ← פועלים ← משפיעים</div>
+      </div></div>`;
+  }
+
+  function bindHome() {
+    $("#heroSearch").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const q = e.currentTarget.q.value.trim();
+      location.hash = q ? `#/search?q=${encodeURIComponent(q)}` : "#/search";
+    });
+  }
+
+  // ---------- עיון עם מסננים (משותף לעמוד המונצחים ולעמוד הפרויקטים) ----------
+  // כל קטגוריה מוצגת ככפתורי בחירה עם מספר התוצאות לכל אפשרות. לחיצה בוחרת, לחיצה נוספת מבטלת.
+  const FACET_PREVIEW = 6; // כמה אפשרויות להציג לפני "הצג עוד"
+  const asOptions = (list) => list.map((v) => (Array.isArray(v) ? v : [String(v), String(v)]));
+  const peopleOptions = () => [...namedPeople]
+    .sort((a, b) => plainName(a.name).localeCompare(plainName(b.name), "he"))
+    .map((p) => [p.id, plainName(p.name)]);
+
+  const BROWSERS = {
+    projects: {
+      base: "#/projects",
+      title: "הפרויקטים",
+      intro: "כל פרויקט כאן הוא דרך שבה נתינה של אדם ממשיכה לפעול. בחרו בסינון את מה שמעניין אתכם – לפי מונצח, תחום, אוכלוסייה, סוג פרויקט, שנה או מקום.",
+      searchLabel: "חיפוש חופשי",
+      placeholder: "שם מונצח, שם פרויקט, מוסד או עיר…",
+      items: () => PROJECTS,
+      text: (p, q) => textMatch(q, projectText(p)),
+      sort: (a, b) => (b.featured - a.featured) || (b.year - a.year),
+      card: projectCard,
+      gridClass: "projects-grid",
+      noun: (n) => projectsWord(n),
+      facets: [
+        { key: "person", label: "לזכר", options: peopleOptions, test: (p, v) => p.donors.includes(v) },
+        { key: "domain", label: "תחום", options: () => asOptions(Object.keys(DOMAINS)), test: (p, v) => p.domain === v },
+        { key: "pop", label: "למען מי", options: () => asOptions(POPULATIONS.map((x) => x.name)), test: (p, v) => p.populations.includes(v) },
+        { key: "type", label: "סוג פרויקט", options: () => asOptions(PROJECT_TYPES), test: (p, v) => (p.types || []).includes(v) },
+        { key: "year", label: "שנת ההקצבה", options: () => asOptions(years), test: (p, v) => String(p.year) === v },
+        { key: "city", label: "יישוב", options: () => asOptions(projectCities), test: (p, v) => p.city === v },
+        { key: "inst", label: "מוסד", options: () => asOptions(institutions), test: (p, v) => p.institution === v },
+      ],
+    },
+    people: {
+      base: "#/people",
+      title: "המונצחים",
+      intro: "האנשים שהורישו את רכושם לטובת הציבור. חפשו לפי שם, או בחרו בסינון תחום, אוכלוסייה או מקום – ותראו מי האנשים שבזכותם נעשתה העשייה.",
+      searchLabel: "חיפוש לפי שם המונצח",
+      placeholder: "לדוגמה: רחל לוינסון…",
+      items: () => namedPeople,
+      text: (p, q) => textMatch(q, p.name),
+      sorts: [["", "לפי שם"], ["count", "לפי מספר פרויקטים"]],
+      sort: (a, b, s) => s === "count"
+        ? projectsOf(b.id).length - projectsOf(a.id).length
+        : plainName(a.name).localeCompare(plainName(b.name), "he"),
+      card: personCard,
+      gridClass: "people-grid",
+      noun: (n) => (n === 1 ? "מונצח אחד" : `${n} מונצחים`),
+      facets: [
+        { key: "domain", label: "תחום העשייה לזכרו", options: () => asOptions(Object.keys(DOMAINS)), test: (p, v) => projectsOf(p.id).some((x) => x.domain === v) },
+        { key: "pop", label: "למען מי", options: () => asOptions(POPULATIONS.map((x) => x.name)), test: (p, v) => projectsOf(p.id).some((x) => x.populations.includes(v)) },
+        { key: "type", label: "סוג פרויקט", options: () => asOptions(PROJECT_TYPES), test: (p, v) => projectsOf(p.id).some((x) => (x.types || []).includes(v)) },
+        { key: "year", label: "שנת ההקצבה", options: () => asOptions(years), test: (p, v) => projectsOf(p.id).some((x) => String(x.year) === v) },
+        { key: "city", label: "מיקום הפרויקט", options: () => asOptions(projectCities), test: (p, v) => projectsOf(p.id).some((x) => x.city === v) },
+        { key: "pcity", label: "עיר מגורים", options: () => asOptions(peopleCities), test: (p, v) => p.city === v },
+      ],
+    },
+  };
+
+  function browsePage(name, params) {
+    const cfg = BROWSERS[name];
+    return `
+      <div class="wrap">
+        <div class="page-head"><h1>${cfg.title}</h1><p>${cfg.intro}</p></div>
+        <div class="browse">
+          <aside class="facets" id="facets" aria-label="סינון"></aside>
+          <div class="browse-main">
+            <form class="browse-search" onsubmit="return false" role="search">
+              <label for="browseQ">${cfg.searchLabel}</label>
+              <input id="browseQ" type="search" value="${esc(params.get("q") || "")}" placeholder="${cfg.placeholder}" autocomplete="off">
+            </form>
+            <button class="btn btn-line facets-toggle" id="facetsToggle" type="button" aria-controls="facets" aria-expanded="false"></button>
+            <div class="active-bar" id="activeBar"></div>
+            <div class="${cfg.gridClass}" id="browseResults"></div>
+          </div>
+        </div>
+      </div>
+      <div style="height:64px"></div>`;
+  }
+
+  function bindBrowse(name, params) {
+    const cfg = BROWSERS[name];
+    const state = Object.fromEntries(["q", "sort", ...cfg.facets.map((f) => f.key)].map((k) => [k, params.get(k) || ""]));
+    const expanded = new Set();
+    const optionsCache = Object.fromEntries(cfg.facets.map((f) => [f.key, f.options()]));
+    const label = (facet, val) => (optionsCache[facet.key].find(([v]) => v === val) || [, val])[1];
+
+    // מחזיר את הפריטים שעוברים את כל המסננים, למעט (אופציונלית) קטגוריה אחת — לצורך ספירת האפשרויות בה
+    const filtered = (skipKey) => cfg.items().filter((item) =>
+      (!state.q || cfg.text(item, state.q)) &&
+      cfg.facets.every((f) => f.key === skipKey || !state[f.key] || f.test(item, state[f.key])));
+
+    const renderFacets = () => {
+      $("#facets").innerHTML = `
+        <div class="facets-head"><strong>סינון</strong>${activeCount() ? `<button class="link-btn" data-clear type="button">ניקוי הכל</button>` : ""}</div>
+        ${cfg.sorts ? `
+          <fieldset class="facet"><legend>מיון</legend><div class="opts">
+            ${cfg.sorts.map(([v, t]) => `<button type="button" class="opt ${state.sort === v ? "active" : ""}" data-sort="${v}" aria-pressed="${state.sort === v}">${t}</button>`).join("")}
+          </div></fieldset>` : ""}
+        ${cfg.facets.map((f) => {
+          const base = filtered(f.key);
+          const opts = optionsCache[f.key]
+            .map(([v, t]) => ({ v, t, n: base.filter((item) => f.test(item, v)).length }))
+            .filter((o) => o.n > 0 || o.v === state[f.key]);
+          if (!opts.length) return "";
+          const open = expanded.has(f.key) || opts.length <= FACET_PREVIEW + 1;
+          const shown = open ? opts : opts.filter((o, i) => i < FACET_PREVIEW || o.v === state[f.key]);
+          return `
+            <fieldset class="facet"><legend>${f.label}</legend><div class="opts">
+              <button type="button" class="opt ${!state[f.key] ? "active" : ""}" data-key="${f.key}" data-val="" aria-pressed="${!state[f.key]}">הכל</button>
+              ${shown.map((o) => `<button type="button" class="opt ${state[f.key] === o.v ? "active" : ""}" data-key="${f.key}" data-val="${esc(o.v)}" aria-pressed="${state[f.key] === o.v}">${esc(o.t)} <span class="n">${o.n}</span></button>`).join("")}
+              ${opts.length > shown.length ? `<button type="button" class="more-opts" data-expand="${f.key}">+ עוד ${opts.length - shown.length}</button>` : ""}
+            </div></fieldset>`;
+        }).join("")}`;
+    };
+
+    const activeCount = () => cfg.facets.filter((f) => state[f.key]).length + (state.q ? 1 : 0);
+
+    const render = () => {
+      const list = filtered().sort((a, b) => cfg.sort(a, b, state.sort));
+      $("#browseResults").innerHTML = list.map(cfg.card).join("") ||
+        `<div class="empty" style="grid-column:1/-1">לא נמצאו תוצאות. נסו להסיר אחד המסננים.</div>`;
+
+      const chips = cfg.facets.filter((f) => state[f.key]).map((f) =>
+        `<button type="button" class="active-chip" data-key="${f.key}" data-val="" aria-label="הסרת סינון ${esc(f.label)}">${esc(f.label)}: <b>${esc(label(f, state[f.key]))}</b> ✕</button>`);
+      if (state.q) chips.unshift(`<button type="button" class="active-chip" data-clearq aria-label="ניקוי החיפוש">חיפוש: <b>${esc(state.q)}</b> ✕</button>`);
+      $("#activeBar").innerHTML = `<span class="count">נמצאו ${cfg.noun(list.length)}</span>${chips.join("")}`;
+      $("#facetsToggle").textContent = `סינון לפי קטגוריות${activeCount() ? ` (${activeCount()})` : ""}`;
+
+      renderFacets();
+      const qs = new URLSearchParams(Object.entries(state).filter(([, v]) => v)).toString();
+      history.replaceState(null, "", cfg.base + (qs ? "?" + qs : ""));
+    };
+
+    const onClick = (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      if (btn.dataset.expand) expanded.add(btn.dataset.expand);
+      else if (btn.dataset.sort !== undefined) state.sort = btn.dataset.sort;
+      else if (btn.dataset.key) state[btn.dataset.key] = state[btn.dataset.key] === btn.dataset.val ? "" : btn.dataset.val;
+      else if (btn.hasAttribute("data-clearq")) { state.q = ""; $("#browseQ").value = ""; }
+      else if (btn.hasAttribute("data-clear")) { cfg.facets.forEach((f) => (state[f.key] = "")); state.q = ""; $("#browseQ").value = ""; }
+      else return;
+      render();
+    };
+    $("#facets").addEventListener("click", onClick);
+    $("#activeBar").addEventListener("click", onClick);
+    $("#browseQ").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
+    $("#facetsToggle").addEventListener("click", (e) => {
+      const open = $("#facets").classList.toggle("open");
+      e.currentTarget.setAttribute("aria-expanded", String(open));
+    });
+    render();
+  }
+
+
+  function personPage(id) {
+    const person = personById[id];
+    if (!person || person.anonymous) return notFound();
+    const projects = projectsOf(id);
+    const total = projects.reduce((s, p) => s + (p.amount || 0), 0);
+    const domains = uniq(projects.map((p) => p.domain));
+    return `
+      <section class="memorial">
+        <div class="wrap">
+          <div class="crumbs"><a href="#/">ראשי</a> / <a href="#/people">המונצחים</a> / ${esc(plainName(person.name))}</div>
+          <div class="memorial-inner">
+            ${portrait(person, "lg")}
+            <div>
+              <div class="eyebrow">לזכר</div>
+              <h1>${esc(person.name)}</h1>
+              <div class="years">${[person.years, person.city].filter(Boolean).map(esc).join(" · ")}</div>
+              ${person.deathDate ? `<div class="death-date">${isAnniversary(person, new Date()) ? `<span class="today-candle">🕯️ היום יום השנה לפטירתו/ה ·</span> ` : ""}נפטר/ה ב-${esc(deathLine(person))}</div>` : ""}
+              ${person.bio ? `<p class="bio">${esc(person.bio)}</p>` : ""}
+              ${person.quote ? `<blockquote>"${esc(person.quote)}"</blockquote>` : ""}
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="wrap"><div class="stats">
+        <div class="stat"><b>${projects.length}</b><span>פרויקטים לזכרו/ה</span></div>
+        <div class="stat"><b>${domains.length}</b><span>תחומי עשייה</span></div>
+        <div class="stat"><b>${uniq(projects.map((p) => p.city)).length}</b><span>יישובים</span></div>
+        ${CONFIG.showAmounts && total ? `<div class="stat"><b>${fmtMoneyShort(total)}</b><span>הוקצו מהעיזבון</span></div>` : ""}
+      </div></div>
+      <section class="block">
+        <div class="wrap">
+          <div class="section-head"><div><h2>העשייה לזכרו/ה</h2><p>הפרויקטים שמומנו מעיזבונו/ה של ${esc(plainName(person.name))}.</p></div></div>
+          ${projects.length ? `<div class="projects-grid">${projects.map(projectCard).join("")}</div>` : `<div class="empty">הפרויקטים לזכרו/ה יתווספו בקרוב.</div>`}
+        </div>
+      </section>`;
+  }
+
+
+  // ---------- חיפוש כללי: מונצחים + פרויקטים ----------
+  function searchPage(params) {
+    const q = params.get("q") || "";
+    return `
+      <div class="wrap">
+        <div class="page-head">
+          <h1>חיפוש באתר</h1>
+          <p>חפשו לפי שם המונצח, שם הפרויקט, מוסד, עיר, תחום או אוכלוסיית יעד.</p>
+        </div>
+        <form class="search-big" onsubmit="return false">
+          <input id="siteQ" type="search" value="${esc(q)}" placeholder="לדוגמה: לוינסון, נגישות, באר שבע…" autocomplete="off" aria-label="חיפוש באתר">
+        </form>
+        <div id="searchResults"></div>
+      </div>
+      <div style="height:64px"></div>`;
+  }
+  function bindSearch() {
+    const input = $("#siteQ");
+    const run = () => {
+      const q = input.value.trim();
+      history.replaceState(null, "", q ? `#/search?q=${encodeURIComponent(q)}` : "#/search");
+      if (!q) { $("#searchResults").innerHTML = `<div class="empty">הקלידו מילת חיפוש כדי להתחיל.</div>`; return; }
+      // מונצח נמצא גם אם החיפוש תואם לפרויקט שנעשה לזכרו
+      const people = namedPeople.filter((p) => textMatch(q, personText(p)) || projectsOf(p.id).some((pr) => textMatch(q, projectFields(pr))));
+      const projects = PROJECTS.filter((p) => textMatch(q, projectText(p)));
+      $("#searchResults").innerHTML = (!people.length && !projects.length)
+        ? `<div class="empty">לא נמצאו תוצאות עבור "${esc(q)}".</div>`
+        : `
+          ${people.length ? `<div class="section-head"><h2>מונצחים (${people.length})</h2></div><div class="people-grid">${people.map(personCard).join("")}</div>` : ""}
+          ${projects.length ? `<div class="section-head" style="margin-top:40px"><h2>פרויקטים (${projects.length})</h2></div><div class="projects-grid">${projects.map(projectCard).join("")}</div>` : ""}`;
+    };
+    input.addEventListener("input", run);
+    input.focus();
+    run();
+  }
+
+  function projectPage(id) {
+    const p = projectById[id];
+    if (!p) return notFound();
+    const donors = namedDonors(p);
+    return `
+      <section class="project-hero" style="--c:${color(p.domain)}">
+        <div class="cover">
+          ${p.image ? `<img src="${esc(p.image)}" alt="">` : ""}
+          <div class="wrap cover-inner">
+            <div class="crumbs"><a href="#/">ראשי</a> / <a href="#/projects">הפרויקטים</a> / ${esc(p.title)}</div>
+            <div><span class="chip">${esc(p.domain)}</span>${p.featured ? ` <span class="chip" style="background:var(--gold);color:#fff">פרויקט דגל</span>` : ""}</div>
+            <h1>${esc(p.title)}</h1>
+            <div class="inst">${esc(p.institution)} · ${esc(p.city)}</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap project-layout">
+        <article>
+          <div class="dedication-box">
+            <div class="label">הפרויקט הוקם בזכות עיזבונם של</div>
+            <h2>${donors.length ? (donors.length > 1 ? "לזכרם של" : "לזכר") : "תורם שביקש להישאר בעילום שם"}</h2>
+            <div class="donor-list">
+              ${donors.map((d) => `
+                <a class="donor-chip" href="#/person/${d.id}">
+                  ${portrait(d)}
+                  <span><b>${esc(d.name)}</b><small>${[d.years, d.city].filter(Boolean).map(esc).join(" · ")}</small></span>
+                </a>`).join("")}
+              ${donors.length && hasAnon(p) ? `<div class="donor-anon">ותורמים נוספים שביקשו להישאר בעילום שם</div>` : ""}
+            </div>
+          </div>
+
+          <div class="content-section"><h2>מטרת הפרויקט</h2><p>${esc(p.goal)}</p></div>
+          <div class="content-section"><h2>תיאור הפרויקט</h2><p>${esc(p.description)}</p></div>
+          ${CONFIG.showOutcome && p.outcome ? `<div class="content-section"><h2>מה בוצע בפועל</h2><p>${esc(p.outcome)}</p></div>` : ""}
+
+          ${p.numbers?.length ? `
+          <div class="content-section">
+            <h2>הפרויקט במספרים</h2>
+            <div class="numbers">${p.numbers.map((n) => `<div class="number"><b>${esc(n.value)}</b><span>${esc(n.label)}</span></div>`).join("")}</div>
+          </div>` : ""}
+        </article>
+
+        <aside class="side-card">
+          <dl>
+            <div><dt>תמצית</dt><dd>${esc(p.summary)}</dd></div>
+            <div><dt>מוסד</dt><dd><a href="#/projects?inst=${encodeURIComponent(p.institution)}">${esc(p.institution)}</a></dd></div>
+            <div><dt>שנת ההקצבה</dt><dd><a href="#/projects?year=${p.year}">${p.year}</a></dd></div>
+            <div><dt>תחום</dt><dd><a href="#/projects?domain=${encodeURIComponent(p.domain)}">${esc(p.domain)}</a></dd></div>
+            ${p.types?.length ? `<div><dt>סוג פרויקט</dt><dd class="tags">${p.types.map((x) => `<a class="tag" href="#/projects?type=${encodeURIComponent(x)}">${esc(x)}</a>`).join("")}</dd></div>` : ""}
+            <div><dt>אוכלוסיית יעד</dt><dd class="tags">${p.populations.map((x) => `<a class="tag" href="#/projects?pop=${encodeURIComponent(x)}">${esc(x)}</a>`).join("")}</dd></div>
+            ${CONFIG.showAmounts && p.amount ? `<div><dt>סכום ההקצבה מהעיזבון</dt><dd class="amount">${fmtMoney(p.amount)}</dd></div>` : ""}
+          </dl>
+          <hr>
+          <a class="more" href="#/projects">← חזרה לכל הפרויקטים</a>
+        </aside>
+      </div>`;
+  }
+
+  function aboutPage() {
+    return `
+      <div class="wrap">
+        <div class="page-head"><h1>על האתר</h1></div>
+        <div class="prose">
+          <p>מדי שנה בוחרים אנשים בישראל להוריש את רכושם, כולו או חלקו, למדינה – מתוך רצון שהנתינה שלהם תמשיך לפעול לטובת הציבור גם אחרי לכתם.</p>
+          <p>האתר נועד לזכור אותם. הוא מספר מי היו האנשים האלה ומה נעשה בזכותם: כיתות לימוד, מבנים נגישים, מרכזים לניצולי שואה, מועדונים לנוער, מרפאות ומרחבי תרבות ברחבי הארץ.</p>
+          <p>במרכז האתר עומדים המונצחים. הפרויקטים הם הדרך שבה הנתינה שלהם באה לידי ביטוי. לכל פרויקט מצוינים שמות האנשים שבזכות עיזבונם הוא קם, ולכל מונצח יש עמוד אישי עם כל הפרויקטים שנעשו לזכרו.</p>
+          <p>אנו מציינים את שמם של כל המורישים, גם אם לא ביקשו הנצחה במפורש, אלא אם ביקשו להישאר בעילום שם.</p>
+        </div>
+      </div>
+      <section class="block">
+        <div class="wrap">
+          <div class="section-head"><div><h2>מהעיזבון – לפרויקט: איך זה עובד?</h2><p>הדרך מצוואה של אדם אחד ועד לפרויקט שמשרת את הציבור:</p></div></div>
+          ${processBlock()}
+        </div>
+      </section>
+      <section class="block" style="padding-top:0">
+        <div class="wrap">${controlBlock()}</div>
+      </section>
+      <section class="block alt">
+        <div class="wrap">
+          <div class="section-head"><div><h2>המורישים לפי מדינות</h2><p>מורישים מארצות רבות בחרו להשאיר את רכושם למדינת ישראל.</p></div></div>
+          ${countryBlock()}
+        </div>
+      </section>
+      <section class="block">
+        <div class="wrap">${donateBlock()}</div>
+      </section>`;
+  }
+
+  // ---------- הוועדה: רקע, חברי הוועדה, יצירת קשר ----------
+  function committeePage() {
+    return `
+      <div class="wrap">
+        <div class="crumbs"><a href="#/">ראשי</a> / הוועדה</div>
+        <div class="page-head"><h1>ועדת העיזבונות</h1>
+          <p>הוועדה הציבורית לקביעת ייעודם של עיזבונות לטובת המדינה, משרד המשפטים.</p></div>
+        <div class="prose">
+          <h2>רקע על הוועדה</h2>
+          <p>כאשר אדם מוריש את רכושו, כולו או חלקו, למדינת ישראל, העיזבון מנוהל וממומש על ידי המדינה והכספים נשמרים לטובת הציבור. ועדת העיזבונות היא הגוף שקובע לאן יגיעו הכספים.</p>
+          <p>הוועדה מפרסמת קול קורא ובו נושאי התמיכה העיקריים, בוחנת את הבקשות שמגישים מוסדות ציבור, עמותות ומשרדי ממשלה, ומקצה את הכספים בהתאם לרצון המוריש ולצורכי הציבור. כאשר המוריש ביקש לייעד את כספו לנושא מסוים, ההקצבה נעשית לפרויקט שמתאים לייעוד זה.</p>
+          <p>כל פרויקט שמומן מעיזבון שבו נקבעה חובת הנצחה נושא את שמו של המוריש, כך שזכרו ממשיך לפעול בקהילה. <a href="#/memorial-guidelines">להנחיות ההנצחה של הוועדה ←</a></p>
+        </div>
+      </div>
+
+      <section class="block">
+        <div class="wrap">
+          <div class="section-head"><div><h2>יו"ר הוועדה וחבריה</h2>
+            <p>בראש הוועדה עומד שופט בדימוס, ולצידו חברים נציגי ציבור שמונו על ידי שר המשפטים באישור הממשלה. כך נשמרת ההחלטה על כספי העיזבונות שקופה, מקצועית ומאוזנת.</p></div></div>
+          <div class="members-grid">
+            ${COMMITTEE.map((m, i) => memberCard(m, i === 0 ? " chair" : "")).join("")}
+          </div>
+        </div>
+      </section>
+
+      ${typeof COMMITTEE_STAFF !== "undefined" && COMMITTEE_STAFF.length ? `
+      <section class="block" style="padding-top:0">
+        <div class="wrap">
+          <div class="section-head"><div><h2>צוות הוועדה</h2>
+            <p>הצוות המקצועי שמלווה את עבודת הוועדה: מקבל ובודק את הבקשות, מכין אותן לדיון, ומלווה את המוסדות עד לביצוע הפרויקט וההנצחה.</p></div></div>
+          <div class="members-grid">${COMMITTEE_STAFF.map((m) => memberCard(m)).join("")}</div>
+        </div>
+      </section>` : ""}
+
+      <section class="block alt">
+        <div class="wrap">${controlBlock()}</div>
+      </section>
+
+      <section class="block">
+        <div class="wrap">
+          <div class="contact-card">
+            <h2>יצירת קשר עם הוועדה</h2>
+            <p>כאן יופיעו פרטי הקשר של הוועדה: כתובת, טלפון ודוא"ל.</p>
+            <p class="note">בגרסת ההדגמה פרטי הקשר הוסרו.</p>
+          </div>
+        </div>
+      </section>`;
+  }
+
+  // ---------- למוסדות: זכאות, נושאי תמיכה, קול קורא, יעל"ה ----------
+  function applyPage() {
+    const ELIGIBLE = [
+      ["עמותות וחברות לתועלת הציבור", "עמותה רשומה (ע\"ר) או חל\"צ הפועלת בישראל לטובת הציבור, בעלת אישור ניהול תקין בתוקף."],
+      ["מוסדות ציבור", "מוסדות חינוך, רווחה, בריאות, תרבות ומחקר הפועלים שלא למטרת רווח."],
+      ["רשויות מקומיות", "עיריות, מועצות מקומיות ואזוריות וועדים מקומיים, לפרויקטים לטובת התושבים."],
+      ["משרדי ממשלה", "משרדי ממשלה ויחידות סמך, גם לנושאים שמעבר לנושאי התמיכה העיקריים."],
+    ];
+    const CONDITIONS = [
+      "הפרויקט מתאים לייעוד העיזבון המבוקש או לאחד מנושאי התמיכה העיקריים.",
+      "צירוף דוחות כספיים ואישור רואה חשבון לפי הנוסח שבקול הקורא.",
+      "צירוף הצעות מחיר לכלל ההוצאות המפורטות בבקשה.",
+      "עמידה בבדיקה הפיננסית של הוועדה (בין היתר בחינת עודף או גירעון מצטבר).",
+      "התחייבות לבצע הנצחה לפי הנחיות הוועדה, כאשר נקבעה בעיזבון חובת הנצחה.",
+    ];
+    return `
+      <div class="wrap">
+        <div class="crumbs"><a href="#/">ראשי</a> / למוסדות</div>
+        <div class="page-head"><h1>הגשת בקשה לתמיכה</h1>
+          <p>מידע לגופים שמבקשים תמיכה מכספי העיזבונות: מי זכאי להגיש, באילו נושאים, ואיך מגישים.</p>
+          <div class="btn-row">${linkBtn("yaela", "כניסה למערכת יעל\"ה להגשת בקשה")}${linkBtn("callForProposals", "לקול הקורא", "btn-line")}</div>
+        </div>
+      </div>
+
+      <section class="block">
+        <div class="wrap">
+          <div class="section-head"><div><h2>גופים זכאים ${sampleBadge}</h2><p>הגופים הבאים רשאים להגיש בקשה לתמיכה. התנאים המלאים מפורטים בקול הקורא.</p></div></div>
+          <div class="eligible-grid">${ELIGIBLE.map(([t, d]) => `<div class="info-card"><h3>${t}</h3><p>${d}</p></div>`).join("")}</div>
+          <h3 style="margin-top:32px">תנאים עיקריים לתמיכה</h3>
+          <ul class="check-list">${CONDITIONS.map((c) => `<li>${c}</li>`).join("")}</ul>
+        </div>
+      </section>
+
+      <section class="block alt">
+        <div class="wrap">
+          <div class="section-head"><div><h2>נושאי התמיכה העיקריים</h2><p>הנושאים שהוועדה קבעה בסבב הנוכחי, בנוסף לעיזבונות שהמורישים ייעדו לנושא מסוים:</p></div></div>
+          <div class="topics">${MAIN_TOPICS.map((t) => `<span class="topic">${esc(t)}</span>`).join("")}</div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="wrap">
+          <div class="cfp">
+            <div>
+              <h2>קול קורא</h2>
+              <p>${CONFIG.links.callForProposals
+                ? "הקול הקורא העדכני זמין להורדה. מומלץ לקרוא אותו במלואו לפני הגשת הבקשה."
+                : "הקול הקורא לשנה הנוכחית יפורסם כאן בקרוב. עד אז ניתן לעיין בנושאי התמיכה העיקריים שלמעלה."}</p>
+            </div>
+            ${linkBtn("callForProposals", "להורדת הקול הקורא")}
+          </div>
+          <div class="money-note">
+            <h2>חשוב לדעת: איך מתקבל הכסף?</h2>
+            <p><b>מימון תואם.</b> ההקצבה מכספי העיזבונות מממנת חלק מעלות הפרויקט, והמוסד נדרש להשתתף במימון ממקורותיו, במימון תואם להקצבה. יש לתכנן את תקציב הפרויקט מראש כך שחלקו של המוסד מובטח.</p>
+            <p><b>הכסף מועבר לאחר הביצוע.</b> ההקצבה אינה מקדמה. המוסד מקים ומבצע את הפרויקט בפועל, בהתאם להחלטת הוועדה, ורק לאחר מכן מגיש חשבוניות ודיווח ביצוע למשרד הממשלתי שמשלם את ההקצבה.</p>
+            <p><b>בדיקת חשבות המשרד.</b> רכז/ת העיזבונות במשרד הממשלתי מלווה את הפרויקט, וחשבות המשרד בודקת את החשבוניות, את הדיווחים ואת ביצוע ההנצחה. כשנמצא שהפרויקט בוצע כנדרש, כספי התמיכה מועברים למוסד.</p>
+          </div>
+          <div class="section-head" style="margin-top:48px"><div><h2>איך מגישים?</h2></div></div>
+          <div class="process">
+            <div class="step"><h3>קריאת הקול הקורא</h3><p>בדקו שהפרויקט מתאים לנושאי התמיכה או לייעוד של עיזבון מסוים.</p></div>
+            <div class="step"><h3>הכנת המסמכים</h3><p>דוחות כספיים, אישור רואה חשבון, הצעות מחיר ואישור ניהול תקין.</p></div>
+            <div class="step"><h3>הגשה ביעל"ה</h3><p>ההגשה נעשית באופן מקוון בלבד, במערכת יעל"ה, באמצעות מערכת ההזדהות הלאומית.</p></div>
+            <div class="step"><h3>בדיקה ודיון</h3><p>הבקשה עוברת בדיקה טכנית ופיננסית ומובאת לדיון בוועדה.</p></div>
+            <div class="step"><h3>ביצוע והנצחה</h3><p>לאחר האישור מבצעים את הפרויקט, מציבים שלט הנצחה ומדווחים ביעל"ה. <a href="#/memorial-guidelines">להנחיות</a></p></div>
+          </div>
+        </div>
+      </section>`;
+  }
+
+  // ---------- נוהל הנצחה: הנחיות הוועדה לשלט הנצחה (מתוך המסמך הרשמי) ----------
+  function guidelinesPage() {
+    return `
+      <div class="wrap">
+        <div class="crumbs"><a href="#/">ראשי</a> / <a href="#/apply">למוסדות</a> / נוהל הנצחה</div>
+        <div class="page-head"><h1>הנחיות לביצוע שלט הנצחה</h1>
+          <p>לפרויקט שנתמך מוועדת העיזבונות. מתוך המסמך הרשמי של ועדת העיזבונות, משרד המשפטים.</p>
+          <div class="btn-row">
+            <a class="btn btn-gold" href="https://www.gov.il/BlobFolder/servicequestionnaire/estates_committee_allocation_of_funds/he/commemoration-form.pdf" target="_blank" rel="noopener">⬇ הורדת ההנחיות וטופס ביצוע הנצחה (PDF)</a>
+            ${linkBtn("yaela", "מערכת יעל\"ה", "btn-line")}
+          </div>
+        </div>
+        <div class="prose guidelines">
+          <p>לצורך מימוש הקצבה שאושרה למוסד על ידי הוועדה, נדרש המוסד ליצור קשר עם רכז/ת העיזבונות במשרד הממשלתי הרלוונטי לבקשה. רכז העיזבונות ילווה ויפקח על ביצוע הפרויקט בהתאם להחלטת הוועדה, וכן על העברת תשלום ההקצבה למוסד לאחר השלמת כל הדרישות, לרבות ביצוע ההנצחה, ככל שנדרש.</p>
+          <p>מוסד שאושרה לו הקצבה מעיזבון אחד או יותר, אשר נקבעה בהם חובת הנצחה, יפעל לביצוע ההנצחה בהתאם להוראות שלהלן:</p>
+
+          <h2>1. נוסח ההנצחה</h2>
+          <p>שלט ההנצחה יכלול:</p>
+          <ol type="א">
+            <li>משפט תמציתי המתאר את הפרויקט שבוצע.</li>
+            <li>נוסח ההנצחה, הן בשפה העברית והן בשפה לועזית, בהתאם למצוין בהחלטת הוועדה למתן הקצבה (ללא ציון מספר העיזבון).</li>
+          </ol>
+
+          <h2>2. הוראות להכנת שלט ההנצחה</h2>
+          <ol type="א">
+            <li>ההנצחה תבוצע באמצעות חריטת נוסח ההנצחה על שלט (מתכת, עץ, אבן או זכוכית).</li>
+            <li>מומלץ כי גודל השלט לא יפחת מ-30 ס"מ גובה ו-40 ס"מ רוחב. בכל מקרה, לא יפחת מ-20 ס"מ גובה ו-30 ס"מ רוחב. הכיתוב יהיה בגופן אחיד ובגודל 50 לפחות.</li>
+            <li>השלט ימוקם באופן קבוע על קיר המבואה של המוסד או במקום מרכזי ומכובד אחר. ניתן להוסיף הנצחה באתר האינטרנט של המוסד, בנוסף לשלט הפיזי (ולא במקומו).</li>
+            <li>כאשר ההנצחה מבוצעת מחוץ למבנה או באתר פתוח, יש לקבע את השלט לבסיס יציב וחזק המחובר לקרקע.</li>
+            <li>כאשר ההנצחה מבוצעת על גבי רכב, יש להכין מדבקות הכוללות את נוסח ההנצחה הרלוונטי ולהדביקן משני צדי הרכב.</li>
+            <li>יש לוודא כי אין טעויות איות בנוסח ההנצחה או בשם התורם, בהתאם לנוסח המופיע בהחלטת הוועדה.</li>
+            <li>חל איסור להוסיף לוגו כלשהו (של משרד ממשלתי או של המוסד) לשלט ההנצחה.</li>
+            <li>טרם הורדת הקובץ להדפסה, יש לשלוח סקיצה לבדיקה לדוא"ל: כתובת הדוא"ל של הוועדה.</li>
+            <li>בכל ספק הנוגע לנוסח ההנצחה, לאופן ביצועה או לכל נושא אחר, יש להיוועץ ברכז/ת המשרד הממשלתי. ככל שיידרש, ניתן לפנות לוועדה בדוא"ל או בטלפון.</li>
+            <li>ניתן לצרף את הקבלה בגין הכנת שלט ההנצחה לחשבוניות המוגשות למשרד הממשלתי, לצורך הכרה כהוצאה במסגרת המימון התואם להקצבה.</li>
+          </ol>
+
+          <h2>3. העלאת תמונות למערכת יעל"ה לצורך בדיקת תקינות ההנצחה</h2>
+          <ol type="א">
+            <li>לאחר התקנת שלט ההנצחה, יש לצלם לפחות 4 תמונות של השלט (ללא אנשים או ילדים ברקע): שתי תמונות ברורות של השלט מזוויות צילום שונות, ושתי תמונות מרחוק, בהן ניתן לראות את הפרויקט שבוצע וכן את מיקומו של שלט ההנצחה וסביבתו.</li>
+            <li>לצורך קבלת אישור לביצוע ההנצחה, יש להעלות את התמונות ואת "טופס ביצוע הנצחה", ביחס לכל עיזבון שצוין בהחלטה, באמצעות מערכת יעל"ה בלבד, ולא יאוחר מ-30 ימים ממועד השלמת הפרויקט:
+              <div class="path">כניסה לאתר ועדת העיזבונות › מערכת יעל"ה › איתור הבקשה לפי שנה ומספר בקשה › "פעולות בבקשה" › "בקשה לאישור הנצחה" › "הוספת עיזבון" › העלאת התמונות וטופס ביצוע ההנצחה</div></li>
+            <li>על המוסד להעביר לרכז/ת המשרד הממשלתי העתק מאישור ההנצחה שיופק ממערכת יעל"ה, בצירוף תמונות ההנצחה וטופס ביצוע ההנצחה.</li>
+          </ol>
+          <div class="warn">
+            <p><b>ללא שליחת התמונות וטופס ביצוע ההנצחה, לא יאושר ביצוע ההנצחה וההקצבה לא תשולם.</b></p>
+            <p>הוועדה תבחן את תקינות ההנצחה ותשלח את החלטתה לנציג המשויך. הודעת מערכת יעל"ה שמתקבלת עם העלאת הקבצים, ולפיה הבקשה הועברה להמשך טיפול, <b>אינה מהווה אישור על תקינות ההנצחה</b>.</p>
+            <p>מוסד שלא יבצע הנצחה ייאלץ להשיב את ההקצבה שניתנה ולא יוכל לקבל הקצבות נוספות בעתיד.</p>
+          </div>
+          <p class="note">מקור: <a href="https://www.gov.il/BlobFolder/servicequestionnaire/estates_committee_allocation_of_funds/he/commemoration-form.pdf" target="_blank" rel="noopener">הנחיות לביצוע שלט הנצחה, ועדת העיזבונות, gov.il</a>. בכל מקרה של אי-התאמה, הנוסח במסמך הרשמי הוא הקובע.</p>
+        </div>
+      </div>
+      <div style="height:64px"></div>`;
+  }
+
+  function notFound() {
+    return `<div class="wrap"><div class="page-head"><h1>העמוד לא נמצא</h1><p>ייתכן שהקישור שגוי. <a href="#/">חזרה לעמוד הראשי</a></p></div></div><div style="height:200px"></div>`;
+  }
+
+  // ---------- router ----------
+  function route() {
+    const hash = location.hash.slice(1) || "/";
+    const [path, query = ""] = hash.split("?");
+    const params = new URLSearchParams(query);
+    const parts = path.split("/").filter(Boolean);
+    let html, bind, nav;
+
+    switch (parts[0]) {
+      case undefined: html = home(params); bind = bindHome; nav = "home"; break;
+      case "committee": html = committeePage(); nav = "committee"; break;
+      case "apply": html = applyPage(); nav = "apply"; break;
+      case "memorial-guidelines": html = guidelinesPage(); nav = "apply"; break;
+      case "people": html = browsePage("people", params); bind = () => bindBrowse("people", params); nav = "people"; break;
+      case "person": html = personPage(decodeURIComponent(parts[1] || "")); nav = "people"; break;
+      case "projects": html = browsePage("projects", params); bind = () => bindBrowse("projects", params); nav = "projects"; break;
+      case "project": html = projectPage(decodeURIComponent(parts[1] || "")); nav = "projects"; break;
+      case "about": html = aboutPage(); nav = "about"; break;
+      case "search": html = searchPage(params); bind = bindSearch; nav = "search"; break;
+      default: html = notFound();
+    }
+
+    main.innerHTML = html;
+    bind?.();
+    document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === nav));
+    $(".nav").classList.remove("open");
+    $(".menu-btn").setAttribute("aria-expanded", "false");
+    const title = $("h1", main)?.textContent;
+    document.title = (nav === "home" || !title ? "" : title + " | ") + CONFIG.siteName;
+    window.scrollTo(0, 0);
+  }
+
+  $(".menu-btn").addEventListener("click", (e) => {
+    const open = $(".nav").classList.toggle("open");
+    e.currentTarget.setAttribute("aria-expanded", String(open));
+  });
+  // כפתור שעדיין אין לו קישור: הודעה קצרה במקום מעבר לעמוד
+  let toastTimer;
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("[data-placeholder]")) return;
+    let t = $("#toast");
+    if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; t.setAttribute("role", "status"); document.body.append(t); }
+    t.textContent = "הקישור יתווסף בקרוב";
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+  });
+  window.addEventListener("hashchange", route);
+  route();
+})();
+
+</script>
